@@ -1,0 +1,36 @@
+*	Varje segment, filter, detekt och track objekt måste hantera sina egna
+	trackBars, för att kunna kontrollera objektets inställningar.	
+
+*	Applikationen är strukturerad enligt Applikationslayout@Google_Drive 
+	eftersom det är fyra bildtolkningssteg för att kunna räkna en människa 
+	i rörelse.
+
+*	Fixa ett objekt som lagrar all information som behövs genom alla stegen. 
+	PENDING
+
+*	Fixa så att alla Abstrakta objekt har samma struktur.
+	DONE
+
+*	Fixa så att classerna, som extendar de abstrakta classerna, sparar 
+	innan de dör och att de laddar inställningar när de skapas.
+	DONE
+
+*	Fixa hur blobarna lagras i detection fasen.
+	DONE Jag har gjort så att de lagras i en vector som skickas in till Data classen.
+
+*	För att programmet ska kunna prestera bra så måste det finnas någon form 
+	dilate filter, efetersom moments funktionen som används i DETECTION classen 
+	hittar förmånga objekt.
+
+*	Implementera vidare TRACKING klassen
+	PENDING
+
+*	Det kan finnas en minnesläcka, undersök
+	EDIT: efter fortsatt användande så har programmet fortsatt att ta mer plats i minnet
+	EDIT: Det verkar som att problemet är fixat
+	DONE
+	
+*	Fixa ett bättre videoklipp att testa programmet på
+	DONE
+
+*	Det kan bli fel i räkningen om area inställningen är för stor.
