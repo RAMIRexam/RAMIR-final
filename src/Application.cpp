@@ -91,6 +91,9 @@ Application::~Application()
 */
 void Application::start()
 {
+
+	//Jag heter Emil
+
 	Mat frame;
 	Data data;
 	
