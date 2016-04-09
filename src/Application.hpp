@@ -7,6 +7,7 @@
 #include "Display.hpp"
 
 //Segment
+#include "BGS.hpp"
 #include "MOG_BGS.hpp"
 #include "MOG_BGS_HSV.hpp"
 #include "ROI_BG.hpp"

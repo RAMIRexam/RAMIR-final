@@ -95,7 +95,7 @@ void Application::start()
 	Data data;
 	
 	//addSegment(new ROI_BG(&data));
-	addSegment(new MOG_BGS_HSV(&data));
+	addSegment(new BGS(&data));
 
 
 	addFilter(new ERODE(&data));
