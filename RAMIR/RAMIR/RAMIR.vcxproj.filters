@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Abstract">
+      <UniqueIdentifier>{33e9f19a-bc0d-4502-9970-c9f93c375954}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Segment">
+      <UniqueIdentifier>{ec758094-4c55-4e1a-82cb-a88379e1ca54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Filter">
+      <UniqueIdentifier>{94a4a401-a1aa-4d98-85ed-4996939611f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Detection">
+      <UniqueIdentifier>{c8293329-82cd-4247-a651-701b15baf60f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tracking">
+      <UniqueIdentifier>{1e3acb61-c9a1-4b3a-a3a0-7f2c20bd4f99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Counter">
+      <UniqueIdentifier>{6816d589-5c4f-45a2-9181-790664287b2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Segment">
+      <UniqueIdentifier>{3c9b403d-ccd0-415a-b51c-336ce547c593}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Filter">
+      <UniqueIdentifier>{aa2364d9-484e-4a46-a854-e53b4c315731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Detection">
+      <UniqueIdentifier>{79565c1e-f09a-4a8b-aea8-c2b2c106b2a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tracking">
+      <UniqueIdentifier>{5cc5d9f8-8607-4e81-a8ce-92c53fdc36cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Counter">
+      <UniqueIdentifier>{c0c1874b-2810-4bb9-b2be-fe5c520e321d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Application.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Blob.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Data.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Display.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Path.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Settings.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Tools.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AbstractCounting.hpp">
+      <Filter>Header Files\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AbstractDetection.hpp">
+      <Filter>Header Files\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AbstractFilter.hpp">
+      <Filter>Header Files\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AbstractSegment.hpp">
+      <Filter>Header Files\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\AbstractTracking.hpp">
+      <Filter>Header Files\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MOG_BGS.hpp">
+      <Filter>Header Files\Segment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\MOG_BGS_HSV.hpp">
+      <Filter>Header Files\Segment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ROI_BG.hpp">
+      <Filter>Header Files\Segment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\DILATE.hpp">
+      <Filter>Header Files\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ERODE.hpp">
+      <Filter>Header Files\Filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\DETECTION.hpp">
+      <Filter>Header Files\Detection</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TRACKING.hpp">
+      <Filter>Header Files\Tracking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\COUNTER_ONE.hpp">
+      <Filter>Header Files\Counter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\COUNTER_TWO.hpp">
+      <Filter>Header Files\Counter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\BGS.hpp">
+      <Filter>Header Files\Segment</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Blob.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Display.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Tools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MOG_BGS_HSV.cpp">
+      <Filter>Source Files\Segment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\MOG_BGS.cpp">
+      <Filter>Source Files\Segment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ROI_BG.cpp">
+      <Filter>Source Files\Segment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DILATE.cpp">
+      <Filter>Source Files\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ERODE.cpp">
+      <Filter>Source Files\Filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\DETECTION.cpp">
+      <Filter>Source Files\Detection</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TRACKING.cpp">
+      <Filter>Source Files\Tracking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\COUNTER_ONE.cpp">
+      <Filter>Source Files\Counter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\COUNTER_TWO.cpp">
+      <Filter>Source Files\Counter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\BGS.cpp">
+      <Filter>Source Files\Segment</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\src\Document.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Settings.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
