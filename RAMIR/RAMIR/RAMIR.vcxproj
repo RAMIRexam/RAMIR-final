@@ -149,6 +149,7 @@
     <ClInclude Include="..\..\src\AbstractSegment.hpp" />
     <ClInclude Include="..\..\src\AbstractTracking.hpp" />
     <ClInclude Include="..\..\src\Application.hpp" />
+    <ClInclude Include="..\..\src\BGS.hpp" />
     <ClInclude Include="..\..\src\Blob.hpp" />
     <ClInclude Include="..\..\src\COUNTER_ONE.hpp" />
     <ClInclude Include="..\..\src\COUNTER_TWO.hpp" />
@@ -168,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Application.cpp" />
+    <ClCompile Include="..\..\src\BGS.cpp" />
     <ClCompile Include="..\..\src\Blob.cpp" />
     <ClCompile Include="..\..\src\COUNTER_ONE.cpp" />
     <ClCompile Include="..\..\src\COUNTER_TWO.cpp" />

@@ -20,7 +20,7 @@ class ROI_BG : public AbstractSegment
 		int height;
 };
 
-#endif // !ROI_HPP
+#endif // !ROI_BG_HPP
 
 
 

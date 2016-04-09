@@ -114,6 +114,9 @@
     <ClInclude Include="..\..\src\COUNTER_TWO.hpp">
       <Filter>Header Files\Counter</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\BGS.hpp">
+      <Filter>Header Files\Segment</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Application.cpp">
@@ -169,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\COUNTER_TWO.cpp">
       <Filter>Source Files\Counter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\BGS.cpp">
+      <Filter>Source Files\Segment</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
