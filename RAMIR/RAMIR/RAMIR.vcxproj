@@ -166,6 +166,7 @@
     <ClInclude Include="..\..\src\Settings.hpp" />
     <ClInclude Include="..\..\src\Tools.hpp" />
     <ClInclude Include="..\..\src\TRACKING.hpp" />
+    <ClInclude Include="..\..\src\TRACKING_CC.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Application.cpp" />
@@ -179,6 +180,7 @@
     <ClCompile Include="..\..\src\Display.cpp" />
     <ClCompile Include="..\..\src\ERODE.cpp" />
     <ClCompile Include="..\..\src\Input.cpp" />
+    <ClCompile Include="..\..\src\main-help_NOTthisproject.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\MOG_BGS.cpp" />
     <ClCompile Include="..\..\src\MOG_BGS_HSV.cpp" />
@@ -187,6 +189,7 @@
     <ClCompile Include="..\..\src\Settings.cpp" />
     <ClCompile Include="..\..\src\Tools.cpp" />
     <ClCompile Include="..\..\src\TRACKING.cpp" />
+    <ClCompile Include="..\..\src\TRACKING_CC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\src\Document.txt" />

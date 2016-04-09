@@ -1,3 +1,7 @@
+/*
+A path-object is the path taken by a pedestrian in the video.
+*/
+
 #include "Path.hpp"
 
 
@@ -84,6 +88,14 @@ void Path::setHeading(Point2f heading)
 Point Path::getHeading()
 {
 	return heading;
+}
+
+bool Path::isCounted() {
+	return isCounted;
+}
+
+void Path::setCounted(bool counted) {
+	isCounted = counted;
 }
 
 

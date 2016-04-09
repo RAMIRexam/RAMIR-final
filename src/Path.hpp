@@ -25,6 +25,9 @@ class Path
 		void setHeading(Point2f heading);
 		Point getHeading();
 
+		bool isCounted();
+		void setCounted(bool counted);
+
 	private:
 		Point2f heading;
 		vector<Blob *> *blobs;
@@ -32,6 +35,9 @@ class Path
 
 		int nLife;
 		int remainingLife;
+
+		bool isCounted;							//True if the pedestrian has passed the countingline
+
 
 };
 
