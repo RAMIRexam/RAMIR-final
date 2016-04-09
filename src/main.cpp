@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
 	try {
-		Application app("humanwalk1.avi");
+		Application app("humanwalk2.avi");
 
 		app.start();
 
