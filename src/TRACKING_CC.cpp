@@ -15,6 +15,9 @@ TRACKING_CC::~TRACKING_CC()
 {
 }
 
+void TRACKING_CC::saveSettings()
+{
+}
 
 
 
@@ -32,9 +35,22 @@ void TRACKING_CC::track()
 	/
 	*/
 
+
+	/***** CODE TO PUZZLE LAST VERSION WITH THIS *****/
+	vector<Path*> trackers;
+	vector<Path*> ACTrackers;
+
 	for (Path *p : *paths) {
-		p->
+		if (p->isCountedCheck()) {
+			ACTrackers.push_back(p);
+		}
+		else {
+			trackers.push_back(p);
+		}
 	}
+	/**************************************************/
+
+
 
 
 	if (ACTrackers.size() > 0) {									//if there exists already counted trackers, the blobs belonging to this trackers must first be removed
@@ -45,7 +61,7 @@ void TRACKING_CC::track()
 	if (trackers.size() == 0) {
 		for (Blob b : blobs) {										//No trackers exists. All blobs will turn to a tracker
 			int lineSide = scene->LSCheck(b);
-			Tracker *t = new Tracker(lineSide, b, trackerLife);
+			Path *t = new Path(lineSide, b, trackerLife);
 
 			t->processed = true;
 			trackers.push_back(t);
@@ -65,7 +81,7 @@ void TRACKING_CC::track()
 
 		}
 
-		for (Tracker *t : trackers) {
+		for (Path *t : trackers) {
 			if (!t->processed) {									//if tracker is not processed, fill it with emptyblob
 				t->fillWithEmptyBlob();
 				t->processed = true;
@@ -74,7 +90,7 @@ void TRACKING_CC::track()
 	}
 
 
-	for (Tracker *t : trackers) {
+	for (Path *t : trackers) {
 		assert(t->processed == true);								//(1) DEBUG
 	}
 
@@ -82,13 +98,71 @@ void TRACKING_CC::track()
 	ACTrackers = trackerSurvivalTest(ACTrackers);					//decrement trackerlife. If trackerlife is 0 the tracker is removed
 
 
-	for (Tracker *t : trackers) { t->processed = false; }				//reset processed for next iteration
-	for (Tracker *t : ACTrackers) { t->processed = false; }			//reset processed for next iteration
+	for (Path *t : trackers) { t->processed = false; }				//reset processed for next iteration
+	for (Path *t : ACTrackers) { t->processed = false; }			//reset processed for next iteration
 
 
 	return trackers;
 }
 
-void TRACKING_CC::saveSettings()
-{
+
+
+/**************************************************************************************************************************************
+/	Iterates throught all trackers and checks if their last matched blob intersect with one of them in the scene. If a blob intersects
+/	it will be added to the tracker and removed from the blobvector.
+**************************************************************************************************************************************/
+vector<Path*> intersectionTest(vector<Blob>* blobs, vector<Path*> trackers) {
+	/*
+	/	Tests:
+	/		(1) Blob from getLastBlob, shall never return an emptyblob
+	/		(2)
+	/
+	*/
+
+	int i = trackers.size() - 1;
+	while (i >= 0) {																//Check tracker from front (oldest tracker shall be checked first)
+		Path* t = trackers[i];
+
+		vector<Blob>* restBlobs = new(vector<Blob>);
+		Blob bestBlob;															// constructs an emptyblob (WORKS)
+
+		double minBhatta = DBL_MAX;
+		vector<Mat> isBlobs;													//InterSecting Blobs
+
+		int blobcounter = 0;													//DEBUG
+		int numberBlobs = blobs->size();											//DEBUG
+
+		while (blobs->size() > 0) {
+			blobcounter++;														//DEBUG
+
+			Blob b = blobs->back();
+			blobs->pop_back();													//Pop makes shure other intersecting blobs than the best is ignored
+
+			assert(!t->getLastBlob().emptyBlob);								//(1) DEBUG
+
+			if ((b.getRect() & t->getLastBlob().getRect()).area() > 0) {		//intersection test
+				Mat hist1 = b.getHist();
+				Mat hist2 = t->getLastBlob().getHist();
+
+				double bhatta = compareHist(b.getHist(), t->getLastBlob().getHist(), CV_COMP_BHATTACHARYYA);
+
+				if (bhatta < minBhatta) {
+					minBhatta = bhatta;
+
+					bestBlob = b;
+				}
+			}
+			else { restBlobs->push_back(b); }
+		}
+		assert(blobcounter == numberBlobs);										//if blob is pop'ed, will all blobs still be iterated?
+
+		blobs = restBlobs;
+
+		if (!bestBlob.emptyBlob) { t->fillWithBlob(bestBlob); }					//If intersection
+		else { t->fillWithEmptyBlob(); }
+
+		t->processed = true;
+		i--;
+	}
+	return trackers;
 }

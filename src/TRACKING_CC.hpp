@@ -14,6 +14,10 @@ public:
 	// Inherited via AbstractTracking
 	void track();
 	void saveSettings();
+
+	vector<Path*> intersectionTest(vector<Blob>* blobs, vector<Path*> trackers);
+
+
 };
 
 #endif // !TRACKING_CC_HPP

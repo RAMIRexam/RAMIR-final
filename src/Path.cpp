@@ -90,7 +90,7 @@ Point Path::getHeading()
 	return heading;
 }
 
-bool Path::isCounted() {
+bool Path::isCountedCheck() {
 	return isCounted;
 }
 

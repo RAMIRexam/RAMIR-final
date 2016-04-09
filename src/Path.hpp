@@ -25,7 +25,7 @@ class Path
 		void setHeading(Point2f heading);
 		Point getHeading();
 
-		bool isCounted();
+		bool isCountedCheck();
 		void setCounted(bool counted);
 
 	private:
