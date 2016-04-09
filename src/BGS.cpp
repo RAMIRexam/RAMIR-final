@@ -20,18 +20,21 @@ BGS::~BGS()
 
 void BGS::segment()
 {
+	Mat temp, frame;
+
 	if (firstRun)
 	{
 		ptrData->getLastImage()->copyTo(model);
 		cvtColor(model, model, CV_BGR2GRAY);
 		firstRun = false;
 	}
-	Mat temp;
-	Mat frame;
+
 	ptrData->getLastImage()->copyTo(frame);
 	cvtColor(frame, frame, CV_BGR2GRAY);
+
 	temp = abs(model - frame) > threshold; 
 	temp.copyTo(*out);
+
 	ptrData->addImage(out);
 }
 
