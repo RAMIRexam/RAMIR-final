@@ -2,7 +2,6 @@
 #define BGS_HPP
 
 #include "AbstractSegment.hpp"
-#include "Input.hpp"
 
 class BGS : public AbstractSegment
 {
@@ -15,8 +14,6 @@ class BGS : public AbstractSegment
 		void saveSettings();
 
 	private:
-		bool firstRun;
-		Mat model;
 };
 
 #endif // !BGS_HPP
