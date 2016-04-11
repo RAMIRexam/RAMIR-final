@@ -10,7 +10,7 @@ class Blob
 	public:
 		Blob();
 		Blob(Point2f centroid, Rect rectangle = Rect(), Mat ROI = Mat(), Mat histogram = Mat());
-		Blob(Mat histogram, Rect rectangle, Mat ROI, Point2f centroid); //DON'T USE THIS
+		Blob(const Blob &blob);
 		~Blob();
 
 		bool isEmpty();

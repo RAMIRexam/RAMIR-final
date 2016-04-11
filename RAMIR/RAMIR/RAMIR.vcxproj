@@ -149,10 +149,8 @@
     <ClInclude Include="..\..\src\AbstractSegment.hpp" />
     <ClInclude Include="..\..\src\AbstractTracking.hpp" />
     <ClInclude Include="..\..\src\Application.hpp" />
-    <ClInclude Include="..\..\src\AREA_DETECT.hpp" />
     <ClInclude Include="..\..\src\BGS.hpp" />
     <ClInclude Include="..\..\src\Blob.hpp" />
-    <ClInclude Include="..\..\src\BOUNDING_BOX.hpp" />
     <ClInclude Include="..\..\src\COUNTER_ONE.hpp" />
     <ClInclude Include="..\..\src\COUNTER_TWO.hpp" />
     <ClInclude Include="..\..\src\Data.hpp" />
@@ -172,10 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Application.cpp" />
-    <ClCompile Include="..\..\src\AREA_DETECT.cpp" />
     <ClCompile Include="..\..\src\BGS.cpp" />
     <ClCompile Include="..\..\src\Blob.cpp" />
-    <ClCompile Include="..\..\src\BOUNDING_BOX.cpp" />
     <ClCompile Include="..\..\src\COUNTER_ONE.cpp" />
     <ClCompile Include="..\..\src\COUNTER_TWO.cpp" />
     <ClCompile Include="..\..\src\Data.cpp" />

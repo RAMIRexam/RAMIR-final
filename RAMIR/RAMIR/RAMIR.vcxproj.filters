@@ -120,12 +120,6 @@
     <ClInclude Include="..\..\src\FIT_OBJECT.hpp">
       <Filter>Header Files\Detection</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\BOUNDING_BOX.hpp">
-      <Filter>Header Files\Detection</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\AREA_DETECT.hpp">
-      <Filter>Header Files\Detection</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Application.cpp">
@@ -186,12 +180,6 @@
       <Filter>Source Files\Segment</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\FIT_OBJECT.cpp">
-      <Filter>Source Files\Detection</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\BOUNDING_BOX.cpp">
-      <Filter>Source Files\Detection</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\AREA_DETECT.cpp">
       <Filter>Source Files\Detection</Filter>
     </ClCompile>
   </ItemGroup>

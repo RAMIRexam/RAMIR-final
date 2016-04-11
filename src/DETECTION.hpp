@@ -5,10 +5,6 @@
 
 #include <opencv2\opencv.hpp>
 
-
-/**
-	Detects blobs using moments function from opencv
-*/
 class DETECTION : public AbstractDetection
 {
 	public:
@@ -20,7 +16,14 @@ class DETECTION : public AbstractDetection
 		void saveSettings();
 
 	private:
+		int areaLimit_1P;
+		int areaLimit_2P;
+		int areaLimit_3P;
+
+		static void setAreaLimit_1P(int value, void *userData);
+		static void setAreaLimit_2P(int value, void *userData);
+		static void setAreaLimit_3P(int value, void *userData);
+
 };
 
 #endif // !DETECTION_HPP
-

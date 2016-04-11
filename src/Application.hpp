@@ -18,7 +18,6 @@
 
 //Detection
 #include "DETECTION.hpp"
-#include "AREA_DETECT.hpp"
 
 //Tracking
 #include "TRACKING.hpp"

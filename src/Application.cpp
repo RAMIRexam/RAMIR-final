@@ -102,7 +102,6 @@ void Application::start()
 	addFilter(new DILATE(&data));
 
 	addDetection(new DETECTION(&data));
-	addDetection(new AREA_DETECT(&data));
 
 	addTracking(new TRACKING(&data));
 

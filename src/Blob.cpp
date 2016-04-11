@@ -9,6 +9,8 @@ Blob::Blob()
 	empty = true;
 }
 
+
+
 Blob::Blob(Point2f centroid, Rect rectangle, Mat ROI, Mat histogram)
 {
 	empty = false;
@@ -19,14 +21,16 @@ Blob::Blob(Point2f centroid, Rect rectangle, Mat ROI, Mat histogram)
 	this->cent = centroid;
 }
 
-Blob::Blob(Mat histogram, Rect rectangle, Mat ROI, Point2f centroid)
-{
-	empty = false;
 
-	this->hist = histogram;
-	this->ROI = ROI;
-	this->rect = rectangle;
-	this->cent = centroid;
+
+Blob::Blob(const Blob & blob)
+{
+	this->empty = blob.empty;
+
+	this->hist = blob.hist;
+	this->ROI = blob.ROI;
+	this->rect = blob.rect;
+	this->cent = blob.cent;
 }
 
 Blob::~Blob()
