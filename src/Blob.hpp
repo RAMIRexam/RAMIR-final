@@ -9,17 +9,30 @@ class Blob
 {
 	public:
 		Blob();
-		Blob(Mat histogram, Rect rectangle, Mat ROI, Point2f centroid);
+		Blob(Point2f centroid, Rect rectangle = Rect(), Mat ROI = Mat(), Mat histogram = Mat());
+		Blob(Mat histogram, Rect rectangle, Mat ROI, Point2f centroid); //DON'T USE THIS
 		~Blob();
 
 		bool isEmpty();
+		
+		void setArea(int area);
+		int getArea();
+
+		void setHist(Mat hist);
 		Mat getHist();
+
+		void setROI(Mat ROI);
 		Mat getROI();
+
+		void setRect(Rect rect);
 		Rect getRect();
+
+		void setCentroid(Point2f centroid);
 		Point2f getCentroid();
 
 	private:
 		bool empty;
+		int area;
 		Mat hist;
 		Mat ROI;
 		Rect rect;

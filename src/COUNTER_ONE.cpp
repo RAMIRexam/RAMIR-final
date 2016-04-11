@@ -55,8 +55,9 @@ void COUNTER_ONE::count()
 
 
 	ptrData->addImage(out);
-
 }
+
+
 
 void COUNTER_ONE::saveSettings()
 {

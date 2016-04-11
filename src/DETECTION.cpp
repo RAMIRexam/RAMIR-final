@@ -6,13 +6,6 @@
 
 DETECTION::DETECTION(Data * data) : AbstractDetection(data)
 {
-	areaLimit_1P = Settings::loadFromFile("DETECTION_AREA_LIMIT_1P");
-	areaLimit_2P = Settings::loadFromFile("DETECTION_AREA_LIMIT_2P");
-	areaLimit_3P = Settings::loadFromFile("DETECTION_AREA_LIMIT_3P");
-
-	createTrackbar("DETECTION_AREA_LIMIT_1P", "Settings", &areaLimit_1P, 40000, setAreaLimit_1P, this);
-	createTrackbar("DETECTION_AREA_LIMIT_2P", "Settings", &areaLimit_2P, 40000, setAreaLimit_2P, this);
-	createTrackbar("DETECTION_AREA_LIMIT_3P", "Settings", &areaLimit_3P, 40000, setAreaLimit_3P, this);
 }
 
 
@@ -70,61 +63,20 @@ void DETECTION::detect()
 		Moments m = moments(cont, false);
 		Point2f cent = Point2f(m.m10 / m.m00, m.m01 / m.m00);
 		
-		
-		if (m.m00 > areaLimit_3P)
-		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
-			rectangle(*out, rect, Scalar(255, 0, 0), 2);	//TEST CODE!
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
-		}
-		else if (m.m00 > areaLimit_2P)
-		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(255, 0, 0), 2); //TEST CODE!
-			rectangle(*out, rect, Scalar(0, 255, 0), 2);	//TEST CODE!
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
-		}
-		else if (m.m00 > areaLimit_1P)
-		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 255, 0), 2); //TEST CODE!
-			rectangle(*out, rect, Scalar(0, 0, 255), 2);	//TEST CODE!
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
-		}
+		//Draw a ellipse at centroid of blob
+		ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); 
 
+		//Add to frameBlobVector in data
+		Blob *b = new Blob(hist, rect, blobROI, cent);
+		b->setArea(m.m00);
+		blobVector->push_back(b);
+		
 	}
 	ptrData->setFrameBlobVector(blobVector);
-	ptrData->addImage(out); //UNNECESSARY? TEST CODE!
+	ptrData->addImage(out);
 }
 
 
 void DETECTION::saveSettings()
 {
-	Settings::saveToFile("DETECTION_AREA_LIMIT_1P", areaLimit_1P);
-	Settings::saveToFile("DETECTION_AREA_LIMIT_2P", areaLimit_2P);
-	Settings::saveToFile("DETECTION_AREA_LIMIT_3P", areaLimit_3P);
-}
-
-
-
-//===============TRACKBAR CALLBACKFUNCTIONS=========================
-
-
-void DETECTION::setAreaLimit_1P(int value, void * userData)
-{
-	DETECTION *temp = (DETECTION *)userData;
-	temp->areaLimit_1P = value;
-}
-
-void DETECTION::setAreaLimit_2P(int value, void * userData)
-{
-	DETECTION *temp = (DETECTION *)userData;
-	temp->areaLimit_2P = value;
-}
-
-void DETECTION::setAreaLimit_3P(int value, void * userData)
-{
-	DETECTION *temp = (DETECTION *)userData;
-	temp->areaLimit_3P = value;
 }
