@@ -2,6 +2,7 @@
 #define DATA_HPP
 
 #include "Path.hpp"
+#include "Scene.hpp"
 
 #include <opencv2\core.hpp>
 
@@ -25,7 +26,8 @@ class Data
 		void clearFrameBlobVector();
 		//===============================
 
-
+		void setScene(Scene* s);									//A scene defines the tracking area
+		Scene* getScene();
 
 
 
@@ -35,6 +37,8 @@ class Data
 		vector<Mat *> *images;
 		vector<Path *> *paths;
 		vector<Blob *> *frameBlobs;
+
+		Scene* scene;
 };
 
 #endif // !DATA_HPP

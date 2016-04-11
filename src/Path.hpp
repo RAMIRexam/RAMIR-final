@@ -2,6 +2,7 @@
 #define PATH_HPP
 
 #include "Blob.hpp"
+#include "Definitions.hpp"
 
 #include <vector>
 
@@ -39,6 +40,9 @@ class Path
 		int remainingLife;
 
 		bool isCounted;							//True if the pedestrian has passed the countingline
+
+		int curSOL;								//current Side Of Line, which side of the line the object currently is
+		int staSOL;								//start Side Of Line, which side of the line the object was when it was first detected
 
 
 };

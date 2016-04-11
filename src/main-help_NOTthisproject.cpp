@@ -591,6 +591,8 @@ vector<Tracker*> tracking(vector<Blob> blobs) {
 	if (trackers.size() == 0) {
 		for (Blob b : blobs) {										//No trackers exists. All blobs will turn to a tracker
 			int lineSide = scene->LSCheck(b);
+			
+			Scene* scene = new(Scene())
 			Tracker *t = new Tracker(lineSide, b, trackerLife);
 
 			t->processed = true;

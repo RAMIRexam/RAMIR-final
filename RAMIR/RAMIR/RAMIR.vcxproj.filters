@@ -120,6 +120,12 @@
     <ClInclude Include="..\..\src\TRACKING_CC.hpp">
       <Filter>Header Files\Tracking</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Definitions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Application.cpp">
@@ -183,6 +189,9 @@
       <Filter>Source Files\Tracking</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\main-help_NOTthisproject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

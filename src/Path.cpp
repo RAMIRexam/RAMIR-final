@@ -15,7 +15,37 @@ Path::Path()
 
 	blobs = new vector<Blob *>();
 	ptrLastBlob = NULL;
+
+	staSOL = LINESIDE_NOTDEFINED;		//use other constructor in TRACKER_CC
+
 }
+
+Path::Path(int lineSide, )
+{
+	nLife = 3;
+	remainingLife = nLife;
+
+	blobs = new vector<Blob *>();
+	ptrLastBlob = NULL;
+
+
+	// Start side of entry/exit-line
+	/******************************************/
+	if (lineSide == LEFTSIDE_OFLINE) {
+		staSOL = LEFTSIDE_OFLINE;
+		curSOL = LEFTSIDE_OFLINE;
+	}
+	else {
+		assert(lineSide == RIGHTSIDE_OFLINE);
+		staSOL = RIGHTSIDE_OFLINE;
+		curSOL = RIGHTSIDE_OFLINE;
+	}
+	/******************************************/
+}
+
+
+
+
 
 Path::Path(Blob * blob)
 {

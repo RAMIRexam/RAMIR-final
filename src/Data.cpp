@@ -38,6 +38,20 @@ Data::~Data()
 
 //========================================================
 
+/*
+	A scene is the trackerarea. It is partly used to determine which side
+	of the eeline (entry exit line) a blob currently is on.
+*/
+void Data::setScene(Scene* s) {
+	scene = s;
+}
+
+Scene* Data::getScene() {
+	assert(scene != NULL);
+	return scene;
+}
+
+
 
 void Data::addImage(Mat * img)
 {

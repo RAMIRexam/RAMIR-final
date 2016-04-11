@@ -5,6 +5,7 @@
 
 #include "Input.hpp"
 #include "Display.hpp"
+#include "Definitions.hpp"
 
 //Segment
 #include "MOG_BGS.hpp"
