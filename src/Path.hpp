@@ -11,8 +11,7 @@ using namespace std;
 class Path
 {
 	public:
-		Path();
-		Path(Blob *blob);
+		Path(Blob * blob, int pathLife = 10);
 		~Path();
 
 		void addBlob(Blob *blob);
@@ -27,7 +26,16 @@ class Path
 		Point getHeading();
 
 		bool isCountedCheck();
-		void setCounted(bool counted);
+		void setCounted(bool counted);		//will be called with true when the blob passes the eeline
+
+		
+
+		//For TRACKING_CC
+		int get_staSOL();					//get start side of line
+		void set_staSOL(int lineSide);		//set start side of line
+				
+		int get_curSOL();					//get current side of line
+		int set_curSOL(int lineSide);		//set current side of line
 
 		bool processed;							//DEBUG, Used in TRACKING_CC to make shure the path has been processed in some way at the end of the code
 
@@ -48,3 +56,5 @@ class Path
 };
 
 #endif // !PATH_HPP
+
+

@@ -1,5 +1,5 @@
 /*
-TRACKER_CC = "tracker counted check"
+TRACKER_CC = "tracker Counted Check"
 */
 
 #include "TRACKING_CC.hpp"
@@ -25,6 +25,9 @@ void TRACKING_CC::saveSettings()
 
 void TRACKING_CC::track()
 {
+	int trackerLife = 3;
+
+
 	vector<Path *> *paths = ptrData->getPathVector();
 	vector<Blob *> *blobs = ptrData->getFrameBlobVector();
 
@@ -54,57 +57,59 @@ void TRACKING_CC::track()
 
 
 
-
+	//MOVE BLOBS TO ACTRACKERS
 	if (ACTrackers.size() > 0) {									//if there exists already counted trackers, the blobs belonging to this trackers must first be removed
 		ACTrackers = intersectionTest(blobs, ACTrackers);			//intersectionTest will move blobs to "already counted trackers"
 	}
 
-
+	//CREATE NEW TRACKERS FOR ALL BLOBS
 	if (trackers.size() == 0) {
 		for (Blob* b : *blobs) {									//No trackers exists. All blobs will turn to a tracker
-			int lineSide = scene->LSCheck(b);
-			Path *t = new Path(lineSide, b, trackerLife);
+			
+			Path *p = new Path(b, trackerLife);
 
-			t->processed = true;
-			trackers.push_back(t);
+			p->processed = true;									//DEBUG, blob has been added this iteration
+			trackers.push_back(p);
 
 		}
 	}
 
 	else {
-		trackers = intersectionTest(&blobs, trackers);				//there already exists trackers, intersectionTest will move blobs to trackers
+		trackers = intersectionTest(blobs, trackers);				//there already exists trackers, intersectionTest will move blobs to trackers
 
-		for (Blob b : blobs) {										//iterate throught the rest of the blobs and create trackers for them
-			int lineSide = scene->LSCheck(b);
-			Tracker *t = new Tracker(lineSide, b, trackerLife);
+		for (Blob* b : *blobs) {									//iterate throught the rest of the blobs and create trackers for them
+			Path *p = new Path(b, trackerLife);
 
-			t->processed = true;
-			trackers.push_back(t);
+			p->processed = true;
+			trackers.push_back(p);
 
 		}
 
-		for (Path *t : trackers) {
-			if (!t->processed) {									//if tracker is not processed, fill it with emptyblob
-				t->fillWithEmptyBlob();
-				t->processed = true;
+		for (Path *p : trackers) {
+			if (!p->processed) {									//if tracker is not processed, fill it with emptyblob
+				p->addBlob(new Blob());								//construct and add an emptyblob
+				p->processed = true;
 			}
 		}
 	}
 
 
-	for (Path *t : trackers) {
-		assert(t->processed == true);								//(1) DEBUG
+	//REMOVE PATH IF DEAD
+	for (unsigned int j = 0; j < trackers.size(); j++){
+		Path *p = paths->at(j);
+		assert(p->processed == true);								//(1) DEBUG
+	
+		if (!p->isAlive())
+		{
+			paths->erase(paths->begin() + j);
+			delete p;
+		}	
 	}
-
-	trackers = trackerSurvivalTest(trackers);						//decrement trackerlife. If trackerlife is 0 the tracker is removed
-	ACTrackers = trackerSurvivalTest(ACTrackers);					//decrement trackerlife. If trackerlife is 0 the tracker is removed
 
 
 	for (Path *t : trackers) { t->processed = false; }				//reset processed for next iteration
 	for (Path *t : ACTrackers) { t->processed = false; }			//reset processed for next iteration
 
-
-	return trackers;
 }
 
 

@@ -49,14 +49,14 @@ Point2f Scene::getStartPos() {
 /	Line-side check, checks on which side of the line an object is
 /	If the object is exactly on the line, it's said to be on the right side
 **************************************************************************************************************************************/
-int Scene::LSCheck(Blob b) {
+int Scene::LSCheck(Blob* b) {
 	/*
 	/	Tests:
 	/		(1) the entry/exit-line shall be vertical
 	/		(2) manual objectcheck, object on the right or left side
 	/
 	*/
-	Point2f p = b.getCent();
+	Point2f p = b->getCentroid();
 	int blobx = p.x;
 	int bloby = p.y;
 
@@ -67,13 +67,13 @@ int Scene::LSCheck(Blob b) {
 			pauseForLineCheckDEBUG = false;	//(2) DEBUG, PLEASE CHECK SO OBJECT REALLY IS ON LEFT SIDE (add breakpoint)
 		}
 
-		return LEFTSIDE_OFLINE;				//if blob is on the left side
+		return LINESIDE_LEFT;				//if blob is on the left side
 	} 
 	else {
 		if (!pauseForLineCheckDEBUG) {		//(2) DEBUG
 			pauseForLineCheckDEBUG = true;	//(2) DEBUG, PLEASE CHECK SO OBJECT REALLY IS ON RIGHT SIDE (add breakpoint)
 		}
-		return RIGHTSIDE_OFLINE;			//if blob is on the right side
+		return LINESIDE_RIGHT;			//if blob is on the right side
 	}
 	
 }

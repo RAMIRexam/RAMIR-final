@@ -151,6 +151,7 @@
     <ClInclude Include="..\..\src\Application.hpp" />
     <ClInclude Include="..\..\src\BGS.hpp" />
     <ClInclude Include="..\..\src\Blob.hpp" />
+    <ClInclude Include="..\..\src\COUNTER_CC.hpp" />
     <ClInclude Include="..\..\src\COUNTER_ONE.hpp" />
     <ClInclude Include="..\..\src\COUNTER_TWO.hpp" />
     <ClInclude Include="..\..\src\Data.hpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="..\..\src\ROI_BG.cpp" />
     <ClCompile Include="..\..\src\Scene.cpp" />
     <ClCompile Include="..\..\src\Settings.cpp" />
+    <ClCompile Include="..\..\src\COUNTER_CC.cpp" />
     <ClCompile Include="..\..\src\Tools.cpp" />
     <ClCompile Include="..\..\src\TRACKING.cpp" />
     <ClCompile Include="..\..\src\TRACKING_CC.cpp" />

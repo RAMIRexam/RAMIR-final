@@ -26,9 +26,6 @@ class Data
 		void clearFrameBlobVector();
 		//===============================
 
-		void setScene(Scene* s);									//A scene defines the tracking area
-		Scene* getScene();
-
 
 
 	private:

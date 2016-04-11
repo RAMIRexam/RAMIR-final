@@ -16,9 +16,9 @@ ________________________________
 
 #include <fstream>
 #include <sstream>
-#include "Tracker.hpp"
+#include "Path.hpp"
 #include "Blob.hpp"
-
+#include "Definitions.hpp"
 
 #include <opencv2\core.hpp>
 #include <opencv2\highgui.hpp>
@@ -34,7 +34,7 @@ public:
 	Scene(int arg_sx, int arg_sy, int arg_ex, int arg_ey, Mat ROI, Rect arg_rect);
 	Scene();															//Used to enable initialation as global variable in main
 	~Scene();
-	int LSCheck(Blob b);												//Line-side check, checks on which side of the line an object is
+	int LSCheck(Blob* b);												//Line-side check, checks on which side of the line an object is
 	Point2f getStartPos();
 
 
