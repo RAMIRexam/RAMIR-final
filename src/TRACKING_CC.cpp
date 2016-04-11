@@ -5,6 +5,8 @@ TRACKER_CC = "tracker counted check"
 #include "TRACKING_CC.hpp"
 
 
+
+
 TRACKING_CC::TRACKING_CC(Data * data) : AbstractTracking(data)
 {
 
@@ -54,12 +56,12 @@ void TRACKING_CC::track()
 
 
 	if (ACTrackers.size() > 0) {									//if there exists already counted trackers, the blobs belonging to this trackers must first be removed
-		ACTrackers = intersectionTest(&blobs, ACTrackers);			//intersectionTest will move blobs to "already counted trackers"
+		ACTrackers = intersectionTest(blobs, ACTrackers);			//intersectionTest will move blobs to "already counted trackers"
 	}
 
 
 	if (trackers.size() == 0) {
-		for (Blob b : blobs) {										//No trackers exists. All blobs will turn to a tracker
+		for (Blob* b : *blobs) {									//No trackers exists. All blobs will turn to a tracker
 			int lineSide = scene->LSCheck(b);
 			Path *t = new Path(lineSide, b, trackerLife);
 
@@ -111,40 +113,45 @@ void TRACKING_CC::track()
 /	Iterates throught all trackers and checks if their last matched blob intersect with one of them in the scene. If a blob intersects
 /	it will be added to the tracker and removed from the blobvector.
 **************************************************************************************************************************************/
-vector<Path*> intersectionTest(vector<Blob>* blobs, vector<Path*> trackers) {
+
+vector<Path*> TRACKING_CC::intersectionTest(vector<Blob*>* blobs, vector<Path*> paths) {
 	/*
 	/	Tests:
 	/		(1) Blob from getLastBlob, shall never return an emptyblob
-	/		(2)
+	/		(2) -
 	/
 	*/
 
-	int i = trackers.size() - 1;
-	while (i >= 0) {																//Check tracker from front (oldest tracker shall be checked first)
-		Path* t = trackers[i];
+	int i = paths.size() - 1;
+	while (i >= 0) {															//Check tracker from front (oldest tracker shall be checked first)
+		Path* p = paths[i];
 
-		vector<Blob>* restBlobs = new(vector<Blob>);
-		Blob bestBlob;															// constructs an emptyblob (WORKS)
+		vector<Blob*>* restBlobs = new(vector<Blob*>);
+		Blob *bestBlob;															//constructs an emptyblob 
+
+		assert(bestBlob->isEmpty());											//new constructed blobs shall be empty
 
 		double minBhatta = DBL_MAX;
 		vector<Mat> isBlobs;													//InterSecting Blobs
 
 		int blobcounter = 0;													//DEBUG
-		int numberBlobs = blobs->size();											//DEBUG
+		int numberBlobs = blobs->size();										//DEBUG
 
 		while (blobs->size() > 0) {
 			blobcounter++;														//DEBUG
 
-			Blob b = blobs->back();
+			Blob *b = blobs->back();
 			blobs->pop_back();													//Pop makes shure other intersecting blobs than the best is ignored
+			
+			assert(1 == 1);
 
-			assert(!t->getLastBlob().emptyBlob);								//(1) DEBUG
+			assert(!p->getLastBlob()->isEmpty());								//(1) DEBUG
 
-			if ((b.getRect() & t->getLastBlob().getRect()).area() > 0) {		//intersection test
-				Mat hist1 = b.getHist();
-				Mat hist2 = t->getLastBlob().getHist();
+			if ((b->getRect() & p->getLastBlob()->getRect).area() > 0) {			//intersection test
+				Mat hist1 = b->getHist();
+				Mat hist2 = p->getLastBlob()->getHist();
 
-				double bhatta = compareHist(b.getHist(), t->getLastBlob().getHist(), CV_COMP_BHATTACHARYYA);
+				double bhatta = compareHist(b->getHist(), p->getLastBlob()->getHist(), CV_COMP_BHATTACHARYYA);
 
 				if (bhatta < minBhatta) {
 					minBhatta = bhatta;
@@ -158,11 +165,18 @@ vector<Path*> intersectionTest(vector<Blob>* blobs, vector<Path*> trackers) {
 
 		blobs = restBlobs;
 
-		if (!bestBlob.emptyBlob) { t->fillWithBlob(bestBlob); }					//If intersection
-		else { t->fillWithEmptyBlob(); }
+		if (!bestBlob->isEmpty()) {												//If intersection
+			p->addBlob(bestBlob); 
+		}					
+		
+		else { 
+			Blob *emptyBlob = new(Blob);
+			assert(emptyBlob->isEmpty());
+			p->addBlob(emptyBlob); 
+		}
 
-		t->processed = true;
+		p->processed = true;
 		i--;
 	}
-	return trackers;
+	return paths;
 }

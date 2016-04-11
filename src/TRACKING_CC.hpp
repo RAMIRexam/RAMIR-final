@@ -15,7 +15,7 @@ public:
 	void track();
 	void saveSettings();
 
-	vector<Path*> intersectionTest(vector<Blob>* blobs, vector<Path*> trackers);
+	vector<Path*> intersectionTest(vector<Blob*>* blobs, vector<Path*> trackers);
 
 
 };

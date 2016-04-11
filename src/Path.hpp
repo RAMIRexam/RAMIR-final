@@ -28,6 +28,8 @@ class Path
 		bool isCountedCheck();
 		void setCounted(bool counted);
 
+		bool processed;							//DEBUG, Used in TRACKING_CC to make shure the path has been processed in some way at the end of the code
+
 	private:
 		Point2f heading;
 		vector<Blob *> *blobs;
