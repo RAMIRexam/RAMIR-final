@@ -11,10 +11,20 @@ string Tools::int2String(int value)
 
 
 
-int Tools::string2Int(char * value)
+int Tools::string2Int(char * str)
 {
 	int result;
-	istringstream converter(value);
+	istringstream converter(str);
+	converter >> result;
+	return result;
+}
+
+
+
+int Tools::string2Int(string str)
+{
+	int result;
+	istringstream converter(str);
 	converter >> result;
 	return result;
 }

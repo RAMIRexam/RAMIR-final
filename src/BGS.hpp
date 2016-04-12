@@ -14,6 +14,11 @@ class BGS : public AbstractSegment
 		void saveSettings();
 
 	private:
+		bool firstRun;
+		int threshold;
+		Mat model;
+
+		static void setThreshold(int value, void *userdata);
 };
 
 #endif // !BGS_HPP

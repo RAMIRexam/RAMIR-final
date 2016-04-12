@@ -1,6 +1,8 @@
 #ifndef SETTINGS_HPP
 #define SETTINGS_HPP
 
+#include "Tools.hpp"
+
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -18,9 +20,7 @@ class Settings
 		static ifstream ifile;
 
 		static void loadFile(string *fileData);
-
-		static string intToString(int value);
-		static int stringToInt(string str);
+		static int find(string data, string str);
 };
 
 #endif // !SETTINGS_HPP

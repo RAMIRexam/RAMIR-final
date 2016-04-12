@@ -14,7 +14,8 @@ void Settings::saveToFile(char * str, int value)
 	string fileData;
 	loadFile(&fileData);
 
-	int nameIndex = fileData.find(str);		//FIND THE SETTING IF IT EXSIST
+	int nameIndex = find(fileData, str);		//FIND THE SETTING IF IT EXSIST
+	
 	if (nameIndex != string::npos)
 	{
 		//CHANGE THE VALUE OF THE SETTING
@@ -22,12 +23,12 @@ void Settings::saveToFile(char * str, int value)
 		int secondMark = fileData.find("\"", firstMark + 1);
 
 		fileData.erase(firstMark + 1, secondMark - firstMark - 1);
-		fileData.insert(firstMark + 1, intToString(value));
+		fileData.insert(firstMark + 1, Tools::int2String(value));
 	}
 	else
 	{
 		//ADD SETTING TO THE END OF THE FILE
-		fileData = fileData + str + "=\"" + intToString(value) + "\"\n";
+		fileData = fileData + ";" + str + "=\"" + Tools::int2String(value) + "\"\n";
 	}
 
 
@@ -50,14 +51,15 @@ int Settings::loadFromFile(char * str)
 	string fileData;
 	loadFile(&fileData);
 
-	int nameIndex = fileData.find(str);		//FIND THE SETTING IF IT EXSIST
+	int nameIndex = find(fileData, str);		//FIND THE SETTING IF IT EXSIST
+
 	if (nameIndex != string::npos)
 	{
 		//CHANGE THE VALUE OF THE SETTING
 		int firstMark = fileData.find("\"", nameIndex);
 		int secondMark = fileData.find("\"", firstMark + 1);
 
-		return stringToInt(fileData.substr(firstMark + 1, secondMark - 1));
+		return Tools::string2Int(fileData.substr(firstMark + 1, secondMark - 1));
 	}
 	return 0;
 }
@@ -85,28 +87,31 @@ void Settings::loadFile(string *fileData)
 
 
 
-/*
-	Convert int to string
-*/
-string Settings::intToString(int value)
+
+
+
+int Settings::find(string data, string str)
 {
-	ostringstream ostream;
-
-	ostream << value;
-
-	return ostream.str();
+	int iStr = 0;
+	string temp = ";" + str;
+	for (int iData = 0; iData < data.length() - 1; iData++)
+	{
+		if (data.at(iData) == temp.at(iStr))
+		{
+			iStr++;
+			if (data.at(iData + 1) == '=' && iStr == temp.length())
+			{
+				return iData - str.length() + 1;
+			}
+		}
+		else
+		{
+			iStr = 0;
+		}
+	}
+	return string::npos;
 }
 
 
-/*
-	Convert string to int
-*/
-int Settings::stringToInt(string str)
-{
-	int value;
-	istringstream istream(str);
 
-	istream >> value;
 
-	return value;
-}
