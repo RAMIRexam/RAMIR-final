@@ -1,8 +1,10 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include <time.h>
 #include <vector>
 
+#include "Tools.hpp"
 #include "Input.hpp"
 #include "Display.hpp"
 
@@ -52,14 +54,25 @@ class Application
 		void addCounting(AbstractCounting *countingObject);
 		
 	private:
+		string dateTime;
+		int nImagesSaved;
+		Mat lastImage;
+
 		Input *input;
 		Display *display;
+		Data *data;
 		
 		vector<AbstractSegment *>		*segmentObjectVector;
 		vector<AbstractFilter *>		*filterObjectVector;
 		vector<AbstractDetection *>		*detectionObjectVector;
 		vector<AbstractTracking *>		*trackingObjectVector;
 		vector<AbstractCounting *>		*countingObjectVector;
-		
+
+		bool buttonControl();
+		void record();
+		void pause();
+
+		void saveSettings();
+
 };
 #endif // !APPLICATION_HPP
