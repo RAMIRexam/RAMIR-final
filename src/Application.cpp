@@ -101,7 +101,8 @@ void Application::start()
 	addFilter(new ERODE(&data));
 	addFilter(new DILATE(&data));
 
-	addDetection(new DETECTION(&data));
+	//addDetection(new DETECTION(&data));
+	addDetection(new FIT_OBJECT(&data));
 
 	addTracking(new TRACKING(&data));
 
@@ -109,8 +110,7 @@ void Application::start()
 
 	display->createWindow("TEST1");
 	display->createWindow("TEST2");
-	display->createWindow("TEST3");
-	display->createWindow("TEST4");
+
 
 	while (cv::waitKey(1) != 27)
 	{
@@ -125,11 +125,11 @@ void Application::start()
 		for (AbstractSegment *s : *segmentObjectVector) {
 			s->segment();
 		}
-		display->showImage(data.getLastImage(), 2);
+	
 		for (AbstractFilter *f : *filterObjectVector) {
 			f->filter();
 		}
-		display->showImage(data.getLastImage(), 3);
+
 		for (AbstractDetection *d : *detectionObjectVector) {
 			d->detect();
 		}

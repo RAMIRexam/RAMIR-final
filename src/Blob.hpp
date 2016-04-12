@@ -10,7 +10,7 @@ class Blob
 	public:
 		Blob();
 		Blob(Point2f centroid, Rect rectangle = Rect(), Mat ROI = Mat(), Mat histogram = Mat());
-		Blob(const Blob &blob);
+		Blob(const Blob &blob);		//copy constructor
 		~Blob();
 
 		bool isEmpty();
