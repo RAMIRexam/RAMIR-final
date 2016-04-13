@@ -2,6 +2,7 @@
 #define DATA_HPP
 
 #include "Path.hpp"
+#include "Scene.hpp"
 
 #include <opencv2\core.hpp>
 
@@ -17,6 +18,7 @@ class Data
 		void clearImages();
 
 		void addPath(Path *path);
+		void removeAllPaths();
 		vector<Path *> * getPathVector();
 
 		//===============================
@@ -27,14 +29,14 @@ class Data
 
 
 
-
-
 	private:
 		int nImageCnt;
 
 		vector<Mat *> *images;
 		vector<Path *> *paths;
 		vector<Blob *> *frameBlobs;
+
+		Scene* scene;
 };
 
 #endif // !DATA_HPP

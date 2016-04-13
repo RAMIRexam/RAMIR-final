@@ -1,26 +1,26 @@
+/*
+A path-object is the path taken by a pedestrian in the video.
+*/
+
 #include "Path.hpp"
 
 
 //==================CONSTRUCTOR DESTRUCTOR========================
 
-
-Path::Path()
+Path::Path(Blob * blob, int pathLife)
 {
-	nLife = 3;
+	nLife = pathLife;
 	remainingLife = nLife;
 
 	blobs = new vector<Blob *>();
 	ptrLastBlob = NULL;
-}
+	staSOL = LINESIDE_NOTDEFINED;				//will be determined in the counting class
 
-Path::Path(Blob * blob)
-{
-	nLife = 10;
-	remainingLife = nLife;
-
-	blobs = new vector<Blob *>();
 	blobs->push_back(blob);
 	ptrLastBlob = blob;
+
+	setCounted(false);
+
 }
 
 
@@ -84,6 +84,46 @@ void Path::setHeading(Point2f heading)
 Point Path::getHeading()
 {
 	return heading;
+}
+
+bool Path::isCountedCheck() {
+	return isCounted;
+}
+
+void Path::setCounted(bool counted) {
+	isCounted = counted;
+}
+
+
+//For TRACKING_CC
+
+//set start Side Of Line
+void Path::set_staSOL(int lineSide) {
+	if (lineSide == LINESIDE_LEFT) {
+		staSOL = LINESIDE_LEFT;
+		curSOL = LINESIDE_LEFT;
+	}
+	else {
+		assert(lineSide == LINESIDE_RIGHT);
+		staSOL = LINESIDE_RIGHT;
+		curSOL = LINESIDE_RIGHT;
+	}
+}
+
+//get start side of line
+int Path::get_staSOL() {
+	return staSOL;
+}
+
+//set current side of line
+void Path::set_curSOL(int lineSide) {
+	assert(lineSide == LINESIDE_LEFT || lineSide == LINESIDE_RIGHT || lineSide == LINESIDE_NOTDEFINED);
+	curSOL = lineSide;
+}
+
+//get current side of line
+int Path::get_curSOL() {
+	return curSOL;
 }
 
 

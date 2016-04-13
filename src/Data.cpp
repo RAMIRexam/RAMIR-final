@@ -7,7 +7,7 @@
 Data::Data()
 {
 	nImageCnt = 0;
-
+	
 	frameBlobs = nullptr;
 	images = new vector<Mat *>();
 	paths = new vector<Path *>();
@@ -74,6 +74,13 @@ void Data::addPath(Path * path)
 {
 	paths->push_back(path);
 }
+
+void Data::removeAllPaths() 
+{
+	delete paths;
+	paths = new vector<Path*>;
+}
+
 
 vector<Path*>* Data::getPathVector()
 {

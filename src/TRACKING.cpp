@@ -16,6 +16,7 @@ TRACKING::~TRACKING()
 
 void TRACKING::track()
 {
+
 	vector<Path *> *paths = ptrData->getPathVector();
 	vector<Blob *> *blobs = ptrData->getFrameBlobVector();
 

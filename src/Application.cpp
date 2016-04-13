@@ -1,3 +1,11 @@
+/*
+Copyright RAMIR (Räkning av människor i rörelse)
+Del2 i Examensarbete - implementering av projektalgoritmen (egna bildanalysalgoritmer)".
+
+År 2016
+Emil Andersson and Niklas Schedin
+*/
+
 #include "Application.hpp"
 
 
@@ -44,7 +52,7 @@ Application::Application(int a)
 	} catch (char *strException) {
 		throw strException;
 	}
-	
+
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
 	time_t now = time(0);
@@ -126,11 +134,19 @@ Application::~Application()
 void Application::start()
 {
 	Mat frame;
-	//Data data;
 	
-	//SEGMENT
-	//addSegment(new ROI_BG(data));
-	addSegment(new BGS(data));
+
+	/*Emil test (shall be done once?)***********/
+	frame = input->getImage();
+
+	display->resizeImage(&frame);
+
+	data->addImage(&frame);
+	/*******************************************/
+
+	
+	//addSegment(new ROI_BG(&data));
+	addSegment(new MOG_BGS_HSV(data));
 
 	//FILTER
 	addFilter(new ERODE(data));
@@ -138,13 +154,13 @@ void Application::start()
 
 	//DETECTION
 	addDetection(new DETECTION(data));
-	//addDetection(new FIT_OBJECT(data));
 
 	//TRACKING
 	addTracking(new TRACKING(data));
 
-	//COUNTING
-	addCounting(new COUNTER_ONE(data));
+	//addTracking(new TRACKING_CC(data));
+
+	addCounting(new COUNTER_CC(data));
 
 	display->createWindow("TEST1");
 	display->createWindow("TEST2");
@@ -187,7 +203,7 @@ void Application::start()
 
 	//SAVE SETTINGS FOR EACH OBJECT
 	saveSettings();
-}
+	}
 
 
 

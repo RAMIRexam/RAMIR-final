@@ -3,7 +3,17 @@
 
 
 //===================CONSTRUCTOR DESTRUCTOR==========================
+/**************************************************************************
+Constructs an emptyblob. An Emptyblob is used to see if a path starts to loose its tracker
 
+B - Blob
+E - Emptyblob
+
+ 1  2  3  4  5  6
+[B][B][B][B][E][E]
+			 |_______The path is soon released
+
+***************************************************************************/
 Blob::Blob()
 {
 	empty = true;
