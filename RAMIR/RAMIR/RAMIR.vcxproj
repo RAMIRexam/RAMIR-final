@@ -160,6 +160,7 @@
     <ClInclude Include="..\..\src\DILATE.hpp" />
     <ClInclude Include="..\..\src\Display.hpp" />
     <ClInclude Include="..\..\src\ERODE.hpp" />
+    <ClInclude Include="..\..\src\FIT_OBJECT.hpp" />
     <ClInclude Include="..\..\src\Input.hpp" />
     <ClInclude Include="..\..\src\MOG_BGS.hpp" />
     <ClInclude Include="..\..\src\MOG_BGS_HSV.hpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="..\..\src\DILATE.cpp" />
     <ClCompile Include="..\..\src\Display.cpp" />
     <ClCompile Include="..\..\src\ERODE.cpp" />
+    <ClCompile Include="..\..\src\FIT_OBJECT.cpp" />
     <ClCompile Include="..\..\src\Input.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\MOG_BGS.cpp" />

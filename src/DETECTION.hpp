@@ -27,4 +27,3 @@ class DETECTION : public AbstractDetection
 };
 
 #endif // !DETECTION_HPP
-
