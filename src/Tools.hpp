@@ -10,7 +10,9 @@ class Tools
 {
 	public:
 		static string int2String(int value);
-		static int string2Int(char * value);
+
+		static int string2Int(char * str);
+		static int string2Int(string str);
 
 
 	private:

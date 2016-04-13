@@ -31,26 +31,17 @@ void DETECTION::detect()
 
 	vector<Blob *> *blobVector = new vector<Blob *>();
 
-	Mat temp, hist;
+	Mat temp;
 	ptrData->getLastImage()->copyTo(temp);
 
 	findContours(temp, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
 
 
-	//====================================================
-	int hbins = 30, sbins = 32;
-	int histSize[] = { hbins, sbins };
-	float hranges[] = { 0, 180 };
-	float sranges[] = { 0, 256 };
-	const float* ranges[] = { hranges, sranges };
-	int channels[] = { 0, 1 };
-	//=====================================================
-
 	ptrData->getLastImage()->copyTo(*out);
 	cvtColor(*out, *out, CV_GRAY2BGR, 3);
 
 	//Calculate blob data
-	for (vector<Point> cont : contours) 
+	for (vector<Point> cont : contours)
 	{
 
 		//calculates a bounding rectangle around the contour
@@ -61,36 +52,31 @@ void DETECTION::detect()
 		Mat blobROI(ptrData->getImage()->clone(), rect);
 
 
-		//Calculates the histogram for the ROI, NOT USED EVER!!!!
-		calcHist(&blobROI, 1, channels, Mat(), hist, 2, histSize, ranges);
-		normalize(hist, hist, 0, 1, NORM_MINMAX, -1, Mat());
-
-
 		//Find the centroid at the contour
 		Moments m = moments(cont, false);
 		Point2f cent = Point2f(m.m10 / m.m00, m.m01 / m.m00);
-		
-		
+
+
 		if (m.m00 > areaLimit_3P)
 		{
 			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(255, 0, 0), 2);	//TEST CODE!
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
 		}
 		else if (m.m00 > areaLimit_2P)
 		{
 			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(255, 0, 0), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(0, 255, 0), 2);	//TEST CODE!
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
 		}
 		else if (m.m00 > areaLimit_1P)
 		{
 			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 255, 0), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(0, 0, 255), 2);	//TEST CODE!
-			blobVector->push_back(new Blob(hist, rect, blobROI, cent));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
 		}
 
 	}
@@ -128,3 +114,18 @@ void DETECTION::setAreaLimit_3P(int value, void * userData)
 	DETECTION *temp = (DETECTION *)userData;
 	temp->areaLimit_3P = value;
 }
+
+
+
+
+//====================================================
+/*int hbins = 30, sbins = 32;
+int histSize[] = { hbins, sbins };
+float hranges[] = { 0, 180 };
+float sranges[] = { 0, 256 };
+const float* ranges[] = { hranges, sranges };
+int channels[] = { 0, 1 };*/
+//=====================================================
+//Calculates the histogram for the ROI, NOT USED EVER!!!!
+/*calcHist(&blobROI, 1, channels, Mat(), hist, 2, histSize, ranges);
+normalize(hist, hist, 0, 1, NORM_MINMAX, -1, Mat());*/

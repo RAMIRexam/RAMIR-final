@@ -19,7 +19,9 @@ Blob::Blob()
 	empty = true;
 }
 
-Blob::Blob(Mat histogram, Rect rectangle, Mat ROI, Point2f centroid)
+
+
+Blob::Blob(Point2f centroid, Rect rectangle, Mat ROI, Mat histogram)
 {
 	empty = false;
 
@@ -27,6 +29,18 @@ Blob::Blob(Mat histogram, Rect rectangle, Mat ROI, Point2f centroid)
 	this->ROI = ROI;
 	this->rect = rectangle;
 	this->cent = centroid;
+}
+
+
+
+Blob::Blob(const Blob & blob)
+{
+	this->empty = blob.empty;
+
+	this->hist = blob.hist;
+	this->ROI = blob.ROI;
+	this->rect = blob.rect;
+	this->cent = blob.cent;
 }
 
 Blob::~Blob()
@@ -46,9 +60,49 @@ bool Blob::isEmpty()
 	return empty;
 }
 
+
+
+
+
+
+void Blob::setArea(int area)
+{
+	this->area = area;
+}
+
+int Blob::getArea()
+{
+	return area;
+}
+
+
+
+
+
+
+
+void Blob::setHist(Mat hist)
+{
+	this->hist = hist;
+	empty = false;
+}
+
 Mat Blob::getHist()
 {
 	return hist;
+}
+
+
+
+
+
+
+
+
+void Blob::setROI(Mat ROI)
+{
+	this->ROI = ROI;
+	empty = false;
 }
 
 Mat Blob::getROI()
@@ -56,9 +110,36 @@ Mat Blob::getROI()
 	return ROI;
 }
 
+
+
+
+
+
+
+
+void Blob::setRect(Rect rect)
+{
+	this->rect = rect;
+	empty = false;
+}
+
 Rect Blob::getRect()
 {
 	return rect;
+}
+
+
+
+
+
+
+
+
+
+void Blob::setCentroid(Point2f centroid)
+{
+	this->cent = centroid;
+	empty = false;
 }
 
 Point2f Blob::getCentroid()

@@ -1,13 +1,16 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include <time.h>
 #include <vector>
 
+#include "Tools.hpp"
 #include "Input.hpp"
 #include "Display.hpp"
 #include "Definitions.hpp"
 
 //Segment
+#include "BGS.hpp"
 #include "MOG_BGS.hpp"
 #include "MOG_BGS_HSV.hpp"
 #include "ROI_BG.hpp"
@@ -18,6 +21,7 @@
 
 //Detection
 #include "DETECTION.hpp"
+#include "FIT_OBJECT.hpp"
 
 //Tracking
 #include "TRACKING.hpp"
@@ -53,14 +57,25 @@ class Application
 		void addCounting(AbstractCounting *countingObject);
 		
 	private:
+		string dateTime;
+		int nImagesSaved;
+		Mat lastImage;
+
 		Input *input;
 		Display *display;
+		Data *data;
 		
 		vector<AbstractSegment *>		*segmentObjectVector;
 		vector<AbstractFilter *>		*filterObjectVector;
 		vector<AbstractDetection *>		*detectionObjectVector;
 		vector<AbstractTracking *>		*trackingObjectVector;
 		vector<AbstractCounting *>		*countingObjectVector;
-		
+
+		bool buttonControl();
+		void record();
+		void pause();
+
+		void saveSettings();
+
 };
 #endif // !APPLICATION_HPP

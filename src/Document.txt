@@ -34,3 +34,6 @@
 	DONE
 
 *	Det kan bli fel i räkningen om area inställningen är för stor.
+
+*	Fixa spar funktionen. Den sparar inte unika namn
+	PENDING
