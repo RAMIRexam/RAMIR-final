@@ -50,7 +50,6 @@ void TRACKING::track()
 
 					blobAdded = true;
 
-
 					break;
 				}
 			}

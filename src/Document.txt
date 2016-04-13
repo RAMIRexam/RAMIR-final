@@ -6,7 +6,7 @@
 	i rörelse.
 
 *	Fixa ett objekt som lagrar all information som behövs genom alla stegen. 
-	PENDING
+	DONE
 
 *	Fixa så att alla Abstrakta objekt har samma struktur.
 	DONE
@@ -36,4 +36,10 @@
 *	Det kan bli fel i räkningen om area inställningen är för stor.
 
 *	Fixa spar funktionen. Den sparar inte unika namn
-	PENDING
+	DONE
+
+*	Har försökt att implementera ett objekt som passer en ellips om arean på bloben är mindre 
+	än 50%, som i "Automatic people counter...". Men har gett upp eftersom i rapporten så har det 
+	givit dåligt med information om hur varje steg gick till. Det som är förvirande är hur de fick 
+	fram sin "Bounding box" efter BGS.
+

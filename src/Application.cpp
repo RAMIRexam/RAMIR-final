@@ -137,8 +137,8 @@ void Application::start()
 	addFilter(new DILATE(data));
 
 	//DETECTION
-	addDetection(new DETECTION(data));
-	//addDetection(new FIT_OBJECT(data));
+	//addDetection(new DETECTION(data));
+	addDetection(new FIT_OBJECT(data));
 
 	//TRACKING
 	addTracking(new TRACKING(data));
