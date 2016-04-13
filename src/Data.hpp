@@ -18,6 +18,7 @@ class Data
 		void clearImages();
 
 		void addPath(Path *path);
+		void removeAllPaths();
 		vector<Path *> * getPathVector();
 
 		//===============================

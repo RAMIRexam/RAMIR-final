@@ -10,7 +10,6 @@ class COUNTER_CC : public AbstractCounting
 		COUNTER_CC(Data *data);
 		~COUNTER_CC();
 
-
 		// Inherited via AbstractCounting
 		void count();
 		void saveSettings();

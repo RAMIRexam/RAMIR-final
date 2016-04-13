@@ -21,10 +21,12 @@
 
 //Tracking
 #include "TRACKING.hpp"
+#include "TRACKING_CC.hpp"
 
 //Counting
 #include "COUNTER_ONE.hpp"
 #include "COUNTER_TWO.hpp"
+#include "COUNTER_CC.hpp"
 
 #include "AbstractSegment.hpp"
 #include "AbstractFilter.hpp"

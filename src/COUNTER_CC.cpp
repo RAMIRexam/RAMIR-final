@@ -83,8 +83,17 @@ void COUNTER_CC::count()
 		}
 	}
 	
+
+
 	//DRAW THE EELINE
 	line(*out, Point(eelineX, upperLineY), Point(eelineX, lowerLineY), Scalar(255, 0, 0), 2);
+
+	//DRAW COUNTERS ON IMAGE
+	putText(*out, Tools::int2String(leftMovCnt), Point(30, 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 0, 255), 2);
+	putText(*out, Tools::int2String(rightMovCnt), Point(ptrData->getLastImage()->cols - 50, 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 0, 255), 2);
+
+
+	ptrData->addImage(out);
 
 
 }
@@ -124,6 +133,7 @@ int COUNTER_CC::LSCheck(Point2f blobPoint){
 		return LINESIDE_RIGHT;						//if blob is on the right side
 	}
 
-	
+	ptrData->addImage(out);
+
 }
 

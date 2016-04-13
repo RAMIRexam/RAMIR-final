@@ -102,6 +102,16 @@ void Application::start()
 
 	Mat frame;
 	Data data;
+
+
+	/*Emil test (shall be done once?)***********/
+	frame = input->getImage();
+
+	display->resizeImage(&frame);
+
+	data.addImage(&frame);
+	/*******************************************/
+
 	
 	//addSegment(new ROI_BG(&data));
 	addSegment(new MOG_BGS_HSV(&data));
@@ -112,9 +122,9 @@ void Application::start()
 
 	addDetection(new DETECTION(&data));
 
-	addTracking(new TRACKING(&data));
+	addTracking(new TRACKING_CC(&data));
 
-	addCounting(new COUNTER_ONE(&data));
+	addCounting(new COUNTER_CC(&data));
 
 	display->createWindow("TEST1");
 	display->createWindow("TEST2");

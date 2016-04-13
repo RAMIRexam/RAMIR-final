@@ -70,7 +70,6 @@ void TRACKING_CC::track()
 
 			p->processed = true;									//DEBUG, blob has been added this iteration
 			trackers.push_back(p);
-
 		}
 	}
 
@@ -94,21 +93,58 @@ void TRACKING_CC::track()
 	}
 
 
-	//REMOVE PATH IF DEAD
+
+	//DELETE TRACKERS IF DEAD
 	for (unsigned int j = 0; j < trackers.size(); j++){
-		Path *p = paths->at(j);
+		Path *p = trackers.at(j);
+		//Path *p = *paths->begin() + j;
 		assert(p->processed == true);								//(1) DEBUG
 	
 		if (!p->isAlive())
 		{
-			paths->erase(paths->begin() + j);
+			trackers.erase(trackers.begin() + j);
 			delete p;
 		}	
 	}
+	//DELETE ACTRACKERS IF DEAD
+	for (unsigned int j = 0; j < ACTrackers.size(); j++) {
+		Path *p = ACTrackers.at(j);
+		//Path *p = *paths->begin() + j;
+		assert(p->processed == true);								//(1) DEBUG
+
+		if (!p->isAlive())
+		{
+			ACTrackers.erase(ACTrackers.begin() + j);
+			delete p;
+		}
+	}
+
+
+
 
 
 	for (Path *t : trackers) { t->processed = false; }				//reset processed for next iteration
 	for (Path *t : ACTrackers) { t->processed = false; }			//reset processed for next iteration
+
+
+	///** make trackers and ACtrackers to paths again****/
+	vector<Path*>* tempPath = new vector<Path*>();
+	for (Path* p : trackers) {
+		tempPath->push_back(p);
+	}
+	for (Path* p : ACTrackers) {
+		tempPath->push_back(p);
+	}
+	/****************************************************/
+	
+	ptrData->removeAllPaths();
+	
+	for (Path* p : *tempPath) {
+		ptrData->addPath(p);
+	}
+
+	ptrData->addImage(out);
+	
 
 }
 
@@ -132,7 +168,7 @@ vector<Path*> TRACKING_CC::intersectionTest(vector<Blob*>* blobs, vector<Path*> 
 		Path* p = paths[i];
 
 		vector<Blob*>* restBlobs = new(vector<Blob*>);
-		Blob *bestBlob;															//constructs an emptyblob 
+		Blob* bestBlob = new Blob();															//constructs an emptyblob 
 
 		assert(bestBlob->isEmpty());											//new constructed blobs shall be empty
 
