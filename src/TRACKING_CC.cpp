@@ -25,7 +25,7 @@ void TRACKING_CC::saveSettings()
 
 void TRACKING_CC::track()
 {
-	int trackerLife = 3;
+	int trackerLife = 10;
 
 
 	vector<Path *> *paths = ptrData->getPathVector();
@@ -120,9 +120,6 @@ void TRACKING_CC::track()
 	}
 
 
-
-
-
 	for (Path *t : trackers) { t->processed = false; }				//reset processed for next iteration
 	for (Path *t : ACTrackers) { t->processed = false; }			//reset processed for next iteration
 
@@ -167,7 +164,7 @@ vector<Path*> TRACKING_CC::intersectionTest(vector<Blob*>* blobs, vector<Path*> 
 	while (i >= 0) {															//Check tracker from front (oldest tracker shall be checked first)
 		Path* p = paths[i];
 
-		vector<Blob*>* restBlobs = new(vector<Blob*>);
+		vector<Blob*>* restBlobs = new vector<Blob*>();
 		Blob* bestBlob = new Blob();															//constructs an emptyblob 
 
 		assert(bestBlob->isEmpty());											//new constructed blobs shall be empty
@@ -204,7 +201,7 @@ vector<Path*> TRACKING_CC::intersectionTest(vector<Blob*>* blobs, vector<Path*> 
 		}
 		assert(blobcounter == numberBlobs);										//if blob is pop'ed, will all blobs still be iterated?
 
-		blobs = restBlobs;
+		*blobs = *restBlobs;
 
 		if (!bestBlob->isEmpty()) {												//If intersection
 			p->addBlob(bestBlob); 

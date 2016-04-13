@@ -58,28 +58,30 @@ void COUNTER_CC::count()
 
 	//*UPDATE THE TRACKERS CURRENT SIDE OF LINE
 	for (Path* p : *paths) {
+		
 		int curSOL = LSCheck(p->getLastBlob()->getCentroid());									//compares the location of the eeline and the feeded position (blob position)
 		p->set_curSOL(curSOL);
 
 		if (p->get_staSOL() == LINESIDE_NOTDEFINED) {											//I first time (staSOL (start side of line) not set)
 			p->set_staSOL(curSOL);
 		}
-
 		
 	}
 
 
 	//*CHECK IF TRACKERS SHALL BE COUNTED
 	for (Path* p : *paths) {
-			
-		assert(p->get_curSOL() == LINESIDE_RIGHT || p->get_curSOL() == LINESIDE_LEFT);			//(3) DEBUG
-		assert(p->get_staSOL() == LINESIDE_RIGHT || p->get_staSOL() == LINESIDE_LEFT);			//(3) DEBUG
+		
+		if (!p->isCountedCheck()) {
+			assert(p->get_curSOL() == LINESIDE_RIGHT || p->get_curSOL() == LINESIDE_LEFT);			//(3) DEBUG
+			assert(p->get_staSOL() == LINESIDE_RIGHT || p->get_staSOL() == LINESIDE_LEFT);			//(3) DEBUG
 
-		if (p->get_curSOL() != p->get_staSOL() && p->getDuration() > minTrackToBeCounted) {		//tracker shall be counted (has moved from one side to another)
-			if (p->get_curSOL() == LINESIDE_RIGHT) { rightMovCnt++; }							//increment movement from left to right counter
-			else { leftMovCnt++; }																//increment movement from right to left counter
+			if (p->get_curSOL() != p->get_staSOL() && p->getDuration() > minTrackToBeCounted) {		//tracker shall be counted (has moved from one side to another)
+				if (p->get_curSOL() == LINESIDE_RIGHT) { rightMovCnt++; }							//increment movement from left to right counter
+				else { leftMovCnt++; }																//increment movement from right to left counter
 
-			p->setCounted(true);
+				p->setCounted(true);
+			}
 		}
 	}
 	
