@@ -152,7 +152,7 @@ vector<Path*> TRACKING_CC::intersectionTest(vector<Blob*>* blobs, vector<Path*> 
 
 			assert(!p->getLastBlob()->isEmpty());								//(1) DEBUG
 
-			if ((b->getRect() & p->getLastBlob()->getRect).area() > 0) {			//intersection test
+			if ((b->getRect() & p->getLastBlob()->getRect()).area() > 0) {			//intersection test
 				Mat hist1 = b->getHist();
 				Mat hist2 = p->getLastBlob()->getHist();
 

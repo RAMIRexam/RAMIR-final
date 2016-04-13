@@ -15,9 +15,7 @@ class COUNTER_CC : public AbstractCounting
 		void count();
 		void saveSettings();
 
-		int COUNTER_CC::LSCheck(Point* blobPoint);
-	
-		int LSCheck(Point p);								//Line side check. Returns the side side of the eeline (entry exit line) the point is on
+		int LSCheck(Point2f p);								//Line side check. Returns the side side of the eeline (entry exit line) the point is on
 
 	private:
 

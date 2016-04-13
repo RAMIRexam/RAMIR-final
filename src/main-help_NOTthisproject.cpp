@@ -10,9 +10,6 @@ Emil Andersson and Niklas Schedin
 #include <iostream>
 #include <Windows.h>
 #include "Settings.hpp"
-#include "Tracker.hpp"
-#include "MyWindows.hpp"
-#include "editImages.hpp"										//Class used for creating images to the report
 
 #include <opencv2\core.hpp>
 #include <opencv2\opencv.hpp>

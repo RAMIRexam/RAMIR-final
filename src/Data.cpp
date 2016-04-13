@@ -7,7 +7,7 @@
 Data::Data()
 {
 	nImageCnt = 0;
-
+	
 	frameBlobs = nullptr;
 	images = new vector<Mat *>();
 	paths = new vector<Path *>();

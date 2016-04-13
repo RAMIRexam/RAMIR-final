@@ -7,7 +7,7 @@ A path-object is the path taken by a pedestrian in the video.
 
 //==================CONSTRUCTOR DESTRUCTOR========================
 
-Path::Path(Blob * blob, int pathLife = 10)
+Path::Path(Blob * blob, int pathLife)
 {
 	nLife = pathLife;
 	remainingLife = nLife;
@@ -115,14 +115,16 @@ int Path::get_staSOL() {
 	return staSOL;
 }
 
+//set current side of line
+void Path::set_curSOL(int lineSide) {
+	assert(lineSide == LINESIDE_LEFT || lineSide == LINESIDE_RIGHT || lineSide == LINESIDE_NOTDEFINED);
+	curSOL = lineSide;
+}
+
 //get current side of line
 int Path::get_curSOL() {
 	return curSOL;
 }
 
-//set current side of line
-int Path::set_curSOL(int lineSide) {
-	assert(lineSide == LINESIDE_LEFT || lineSide == LINESIDE_RIGHT || lineSide == LINESIDE_NOTDEFINED);
-	curSOL = lineSide;
-}
+
 

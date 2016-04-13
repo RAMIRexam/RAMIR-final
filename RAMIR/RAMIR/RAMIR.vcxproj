@@ -183,7 +183,6 @@
     <ClCompile Include="..\..\src\Display.cpp" />
     <ClCompile Include="..\..\src\ERODE.cpp" />
     <ClCompile Include="..\..\src\Input.cpp" />
-    <ClCompile Include="..\..\src\main-help_NOTthisproject.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\MOG_BGS.cpp" />
     <ClCompile Include="..\..\src\MOG_BGS_HSV.cpp" />

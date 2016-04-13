@@ -97,7 +97,7 @@ void COUNTER_CC::saveSettings()
 /	Line-side check, checks on which side of the line an object is
 /	If the object is exactly on the line, it's said to be on the right side
 **************************************************************************************************************************************/
-int COUNTER_CC::LSCheck(Point* blobPoint){
+int COUNTER_CC::LSCheck(Point2f blobPoint){
 	/*
 	/	Tests:
 	/		(1) the entry/exit-line shall be vertical
@@ -105,8 +105,8 @@ int COUNTER_CC::LSCheck(Point* blobPoint){
 	/
 	*/
 		
-	int blobx = blobPoint->x;
-	int bloby = blobPoint->y;
+	int blobx = blobPoint.x;
+	int bloby = blobPoint.y;
 
 	assert(upperPoint->x == lowerPoint->x);			//(1) DEBUG
 
