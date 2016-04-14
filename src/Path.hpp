@@ -15,15 +15,18 @@ class Path
 		~Path();
 
 		void addBlob(Blob *blob);
-		vector<Blob *> * getBlobVector();
+		Blob *getBlob(int index = 0);
 		Blob *getLastBlob();
+
+		int getNrBlobs();
+		vector<Blob *> * getBlobVector();
 
 		void setLife(int life);
 		int getDuration();
 		bool isAlive();
 
 		void setHeading(Point2f heading);
-		Point getHeading();
+		Point2f getHeading();
 
 		bool isCountedCheck();
 		void setCounted(bool counted);		//will be called with true when the blob passes the eeline

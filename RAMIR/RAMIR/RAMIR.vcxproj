@@ -165,7 +165,6 @@
     <ClInclude Include="..\..\src\MOG_BGS_HSV.hpp" />
     <ClInclude Include="..\..\src\Path.hpp" />
     <ClInclude Include="..\..\src\ROI_BG.hpp" />
-    <ClInclude Include="..\..\src\Scene.hpp" />
     <ClInclude Include="..\..\src\Settings.hpp" />
     <ClInclude Include="..\..\src\Tools.hpp" />
     <ClInclude Include="..\..\src\TRACKING.hpp" />
@@ -188,7 +187,6 @@
     <ClCompile Include="..\..\src\MOG_BGS_HSV.cpp" />
     <ClCompile Include="..\..\src\Path.cpp" />
     <ClCompile Include="..\..\src\ROI_BG.cpp" />
-    <ClCompile Include="..\..\src\Scene.cpp" />
     <ClCompile Include="..\..\src\Settings.cpp" />
     <ClCompile Include="..\..\src\COUNTER_CC.cpp" />
     <ClCompile Include="..\..\src\Tools.cpp" />

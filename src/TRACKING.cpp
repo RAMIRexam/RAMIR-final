@@ -43,13 +43,17 @@ void TRACKING::track()
 				if ((p->getLastBlob()->getRect() & blobs->at(i)->getRect()).area() > 0) //CHECKS FOR THE FISRT BLOBS THAT OVERLAP
 				{
 					Blob *b = blobs->at(i);
-					line(*out, b->getCentroid(), p->getLastBlob()->getCentroid(), Scalar(255, 0, 0), 2); //TEST CODE!
-					p->setHeading(b->getCentroid() - p->getLastBlob()->getCentroid());
+
+					
+					p->setHeading((p->getHeading() * p->getNrBlobs() + (b->getCentroid() - p->getLastBlob()->getCentroid())) / (p->getNrBlobs() + 1));
 					
 					p->addBlob(b);	//ADD BLOB TO PATH
 					blobs->erase(blobs->begin() + i); //REMOVE BLOB FROM VECTOR OF BLOBS
 
 					blobAdded = true;
+
+					//DRAW HEADING VECTOR
+					line(*out, b->getCentroid(), b->getCentroid() + p->getHeading(), Scalar(255, 0, 0), 2); //TEST CODE!
 
 					break;
 				}

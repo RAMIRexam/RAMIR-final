@@ -49,9 +49,10 @@ void Path::addBlob(Blob * blob)
 	}
 }
 
-vector<Blob*>* Path::getBlobVector()
+
+Blob * Path::getBlob(int index)
 {
-	return blobs;
+	return blobs->at(index);
 }
 
 
@@ -59,6 +60,19 @@ Blob * Path::getLastBlob()
 {
 	return ptrLastBlob;
 }
+
+
+int Path::getNrBlobs()
+{
+	return blobs->size();
+}
+
+
+vector<Blob*>* Path::getBlobVector()
+{
+	return blobs;
+}
+
 
 void Path::setLife(int life)
 {
@@ -81,7 +95,7 @@ void Path::setHeading(Point2f heading)
 	this->heading = heading;
 }
 
-Point Path::getHeading()
+Point2f Path::getHeading()
 {
 	return heading;
 }
