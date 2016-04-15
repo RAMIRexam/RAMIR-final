@@ -17,6 +17,20 @@ E - Emptyblob
 Blob::Blob()
 {
 	empty = true;
+	ghostBlob = false;
+}
+
+
+
+Blob::Blob(Point2f centroid, bool ghostBlob, Rect rectangle, Mat ROI, Mat histogram)
+{
+	empty = false;
+	this->ghostBlob = ghostBlob;
+
+	this->hist = histogram;
+	this->ROI = ROI;
+	this->rect = rectangle;
+	this->cent = centroid;
 }
 
 
@@ -24,6 +38,7 @@ Blob::Blob()
 Blob::Blob(Point2f centroid, Rect rectangle, Mat ROI, Mat histogram)
 {
 	empty = false;
+	ghostBlob = false;
 
 	this->hist = histogram;
 	this->ROI = ROI;
@@ -58,6 +73,12 @@ Blob::~Blob()
 bool Blob::isEmpty()
 {
 	return empty;
+}
+
+
+bool Blob::isGhost()
+{
+	return ghostBlob;
 }
 
 

@@ -34,15 +34,19 @@ void COUNTER_ONE::count()
 
 		if (p->getHeading().x < 0 && !blobs->at(size - 1)->isEmpty() && !blobs->at(size - 2)->isEmpty()		//CHECKS IF BLOB HAS PASSED FROM RIGHT TO LEFT OVER THE COUNTING LINE
 			&& blobs->at(size - 1)->getCentroid().x <= ptrData->getLastImage()->cols / 2 
-			&& blobs->at(size - 2)->getCentroid().x >= ptrData->getLastImage()->cols / 2)
+			&& blobs->at(size - 2)->getCentroid().x >= ptrData->getLastImage()->cols / 2
+			&& !p->isCountedCheck())
 		{
 			right2Left++;	
+			p->setCounted(true);
 		}
 		else if (p->getHeading().x > 0 && !blobs->at(size - 1)->isEmpty() && !blobs->at(size - 2)->isEmpty()	//CHECKS IF BLOB HAS PASSED FROM LEFT TO RIGHT OVER THE COUNTING LINE
 			&& blobs->at(size - 1)->getCentroid().x >= ptrData->getLastImage()->cols / 2
-			&& blobs->at(size - 2)->getCentroid().x <= ptrData->getLastImage()->cols / 2)
+			&& blobs->at(size - 2)->getCentroid().x <= ptrData->getLastImage()->cols / 2
+			&& !p->isCountedCheck())
 		{
 			left2Right++;
+			p->setCounted(true);
 		}
 	}
 	

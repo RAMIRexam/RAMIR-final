@@ -117,17 +117,17 @@
     <ClInclude Include="..\..\src\BGS.hpp">
       <Filter>Header Files\Segment</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\TRACKING_CC.hpp">
-      <Filter>Header Files\Tracking</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Scene.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Definitions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\TRACKING_CC.hpp">
+      <Filter>Header Files\Tracking</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\COUNTER_CC.hpp">
       <Filter>Header Files\Counter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TRACKING_GHOST.hpp">
+      <Filter>Header Files\Tracking</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -191,11 +191,11 @@
     <ClCompile Include="..\..\src\TRACKING_CC.cpp">
       <Filter>Source Files\Tracking</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\COUNTER_CC.cpp">
       <Filter>Source Files\Counter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TRACKING_GHOST.cpp">
+      <Filter>Source Files\Tracking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

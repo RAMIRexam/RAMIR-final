@@ -2,7 +2,6 @@
 #define DATA_HPP
 
 #include "Path.hpp"
-#include "Scene.hpp"
 
 #include <opencv2\core.hpp>
 
@@ -35,8 +34,6 @@ class Data
 		vector<Mat *> *images;
 		vector<Path *> *paths;
 		vector<Blob *> *frameBlobs;
-
-		Scene* scene;
 };
 
 #endif // !DATA_HPP

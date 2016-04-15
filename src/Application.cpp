@@ -52,7 +52,7 @@ Application::Application(int a)
 	} catch (char *strException) {
 		throw strException;
 	}
-
+	
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
 	time_t now = time(0);
@@ -135,16 +135,7 @@ void Application::start()
 {
 	Mat frame;
 	
-
-	/*Emil test (shall be done once?)***********/
-	frame = input->getImage();
-
-	display->resizeImage(&frame);
-
-	data->addImage(&frame);
-	/*******************************************/
-
-	
+	//SEGMENT
 	//addSegment(new ROI_BG(&data));
 	addSegment(new MOG_BGS_HSV(data));
 
@@ -157,10 +148,11 @@ void Application::start()
 
 	//TRACKING
 	addTracking(new TRACKING(data));
-
 	//addTracking(new TRACKING_CC(data));
 
-	addCounting(new COUNTER_CC(data));
+	//COUNTING
+	addCounting(new COUNTER_ONE(data));
+	//addCounting(new COUNTER_CC(data));
 
 	display->createWindow("TEST1");
 	display->createWindow("TEST2");
@@ -203,7 +195,7 @@ void Application::start()
 
 	//SAVE SETTINGS FOR EACH OBJECT
 	saveSettings();
-	}
+}
 
 
 
@@ -285,12 +277,7 @@ void Application::record()
 
 void Application::pause()
 {
-	while (waitKey(1) != 112) {
-		if (waitKey(1) == 82)
-		{
-			record();
-		}
-	};
+	while (waitKey() != 112) {};
 }
 
 
