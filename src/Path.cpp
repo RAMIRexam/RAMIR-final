@@ -44,15 +44,25 @@ void Path::addBlob(Blob * blob)
 	if (blob->isEmpty()) {
 		--remainingLife;
 	}
+	else if (blob->isGhost())
+	{
+		ptrLastBlob = blob;
+		--remainingLife;
+	}
 	else {
 		ptrLastBlob = blob;
 		remainingLife = nLife;
 	}
 }
 
-vector<Blob*>* Path::getBlobVector()
+
+
+
+
+
+Blob * Path::getBlob(int index)
 {
-	return blobs;
+	return blobs->at(index);
 }
 
 
@@ -61,31 +71,87 @@ Blob * Path::getLastBlob()
 	return ptrLastBlob;
 }
 
+
+
+
+
+
+int Path::getNrBlobs()
+{
+	return blobs->size();
+}
+
+
+vector<Blob*>* Path::getBlobVector()
+{
+	return blobs;
+}
+
+
+
+
+
+
+
+
+
+
 void Path::setLife(int life)
 {
 	nLife = life;
 	remainingLife = nLife;
 }
 
-int Path::getDuration()
-{
-	return blobs->size();
-}
 
 bool Path::isAlive()
 {
 	return remainingLife > 0;
 }
 
-void Path::setHeading(Point2f heading)
+
+
+
+
+
+
+
+void Path::addHeading(Point2f heading)
 {
-	this->heading = heading;
+	this->headingSum += heading;
 }
 
-Point Path::getHeading()
+Point2f Path::getHeading()
 {
-	return heading;
+	return (headingSum / (int)blobs->size());
 }
+
+
+
+
+
+
+void Path::addArea(int area)
+{
+	this->areaSum += area;
+}
+
+
+int Path::getMeanArea()
+{
+	return (areaSum / blobs->size());
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 bool Path::isCountedCheck() {
 	return isCounted;
@@ -94,6 +160,18 @@ bool Path::isCountedCheck() {
 void Path::setCounted(bool counted) {
 	isCounted = counted;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //For TRACKING_CC

@@ -37,3 +37,7 @@ RAMIR/RAMIR/Release/*
 RAMIR/.vs/*
 RAMIR/RAMIR/x64/*
 *.user
+/RAMIR/RAMIR/humanwalk1.avi
+*.avi
+*.props
+/RAMIR/RAMIR.VC.db

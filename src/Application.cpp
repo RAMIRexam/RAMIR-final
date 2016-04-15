@@ -52,7 +52,7 @@ Application::Application(int a)
 	} catch (char *strException) {
 		throw strException;
 	}
-	
+
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
 	time_t now = time(0);
@@ -145,6 +145,7 @@ void Application::start()
 	/*******************************************/
 
 	
+	//SEGMENT
 	//addSegment(new ROI_BG(&data));
 	addSegment(new MOG_BGS_HSV(data));
 
@@ -288,12 +289,7 @@ void Application::record()
 
 void Application::pause()
 {
-	while (waitKey(1) != 112) {
-		if (waitKey(1) == 82)
-		{
-			record();
-		}
-	};
+	while (waitKey() != 112) {};
 }
 
 

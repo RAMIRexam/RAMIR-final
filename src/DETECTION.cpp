@@ -54,7 +54,7 @@ void DETECTION::detect()
 
 		//Find the centroid at the contour
 		Moments m = moments(cont, false);
-		Point2f cent = Point2f(m.m10 / m.m00, m.m01 / m.m00);
+		Point2f cent = Point(m.m10 / m.m00, m.m01 / m.m00);
 
 
 		if (m.m00 > areaLimit_3P)

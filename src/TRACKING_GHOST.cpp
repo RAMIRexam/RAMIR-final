@@ -1,20 +1,20 @@
-#include "TRACKING.hpp"
+#include "TRACKING_GHOST.hpp"
 
 
 
-TRACKING::TRACKING(Data * data) : AbstractTracking(data)
+TRACKING_GHOST::TRACKING_GHOST(Data * data) : AbstractTracking(data)
 {
 }
 
 
-TRACKING::~TRACKING()
+TRACKING_GHOST::~TRACKING_GHOST()
 {
 }
 
 
 
 
-void TRACKING::track()
+void TRACKING_GHOST::track()
 {
 
 	vector<Path *> *paths = ptrData->getPathVector();
@@ -26,7 +26,7 @@ void TRACKING::track()
 	{
 		for (Blob *b : *blobs)
 		{
-			ptrData->addPath(new Path(b));
+			ptrData->addPath(new Path(b, 25));
 		}
 	}
 	else if (blobs->size() > 0 || paths->size() > 0) //INSERT BLOBS IN ALREADY EXISTING PATHS
@@ -44,10 +44,14 @@ void TRACKING::track()
 				{
 					Blob *b = blobs->at(i);
 
-					
-					p->addHeading(b->getCentroid() - p->getLastBlob()->getCentroid());
-					
+					if (b->getArea() >= p->getMeanArea() * 1.2)
+					{
+						p->addHeading(b->getCentroid() - p->getLastBlob()->getCentroid());
+						p->addArea(b->getArea());
+					}
+
 					p->addBlob(b);	//ADD BLOB TO PATH
+
 					blobs->erase(blobs->begin() + i); //REMOVE BLOB FROM VECTOR OF BLOBS
 
 					blobAdded = true;
@@ -63,26 +67,36 @@ void TRACKING::track()
 			if (!blobAdded)
 			{
 				if (!p->isAlive())
-				{	
+				{
 					paths->erase(paths->begin() + j);
 					delete p;
 				}
 				else
 				{
-					p->addBlob(new Blob());
+					//PREDICTS NEXT LOCATION
+					Blob *b = new Blob(p->getHeading() + p->getLastBlob()->getCentroid(), true);
+					b->setArea(p->getMeanArea());
+					
+					p->addHeading(b->getCentroid() - p->getLastBlob()->getCentroid());
+					p->addArea(b->getArea());
+
+					p->addBlob(b);
+					
+					line(*out, p->getLastBlob()->getCentroid(), p->getHeading() + p->getLastBlob()->getCentroid(), Scalar(0, 0, 255), 2);
 				}
 			}
+			
 		}
 
 		//INSERT REMAINING BLOBS INTO NEW PATHS	
 		for (Blob *b : *blobs)
 		{
-			ptrData->addPath(new Path(b));
+			ptrData->addPath(new Path(b, 25));
 		}
 		ptrData->addImage(out);
 	}
 }
 
-void TRACKING::saveSettings()
+void TRACKING_GHOST::saveSettings()
 {
 }

@@ -24,6 +24,7 @@
 
 //Tracking
 #include "TRACKING.hpp"
+#include "TRACKING_GHOST.hpp"
 #include "TRACKING_CC.hpp"
 
 //Counting
