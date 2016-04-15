@@ -22,11 +22,15 @@ class Path
 		vector<Blob *> * getBlobVector();
 
 		void setLife(int life);
-		int getDuration();
 		bool isAlive();
 
-		void setHeading(Point2f heading);
+		void addHeading(Point2f heading);
 		Point2f getHeading();
+
+
+		void addArea(int area);
+		int getMeanArea();
+
 
 		bool isCountedCheck();
 		void setCounted(bool counted);		//will be called with true when the blob passes the eeline
@@ -43,7 +47,9 @@ class Path
 		bool processed;							//DEBUG, Used in TRACKING_CC to make shure the path has been processed in some way at the end of the code
 
 	private:
-		Point2f heading;
+		Point2f headingSum;
+		int areaSum;
+
 		vector<Blob *> *blobs;
 		Blob *ptrLastBlob;
 

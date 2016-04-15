@@ -169,6 +169,7 @@
     <ClInclude Include="..\..\src\Tools.hpp" />
     <ClInclude Include="..\..\src\TRACKING.hpp" />
     <ClInclude Include="..\..\src\TRACKING_CC.hpp" />
+    <ClInclude Include="..\..\src\TRACKING_GHOST.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Application.cpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="..\..\src\Tools.cpp" />
     <ClCompile Include="..\..\src\TRACKING.cpp" />
     <ClCompile Include="..\..\src\TRACKING_CC.cpp" />
+    <ClCompile Include="..\..\src\TRACKING_GHOST.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\src\Document.txt" />

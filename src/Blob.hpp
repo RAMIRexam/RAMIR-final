@@ -9,11 +9,13 @@ class Blob
 {
 	public:
 		Blob();
+		Blob(Point2f centroid, bool ghostBlob, Rect rectangle = Rect(), Mat ROI = Mat(), Mat histogram = Mat());
 		Blob(Point2f centroid, Rect rectangle = Rect(), Mat ROI = Mat(), Mat histogram = Mat());
 		Blob(const Blob &blob);		//copy constructor
 		~Blob();
 
 		bool isEmpty();
+		bool isGhost();
 		
 		void setArea(int area);
 		int getArea();
@@ -32,6 +34,8 @@ class Blob
 
 	private:
 		bool empty;
+		bool ghostBlob;
+
 		int area;
 		Mat hist;
 		Mat ROI;
