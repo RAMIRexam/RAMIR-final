@@ -8,14 +8,15 @@ using namespace cv;
 class Input
 {
 	public:
-		Input();		//OPEN DEFAULT CAMERA
-		Input(int);		//OPEN CAMERA
-		Input(char *);	//OPEN VIDEOFILE
+		Input(bool repeat = true);		//OPEN DEFAULT CAMERA
+		Input(int camera, bool repeat = true);		//OPEN CAMERA
+		Input(char * filename, bool repeat = true);	//OPEN VIDEOFILE
 		~Input();
 
 		Mat getImage();
 
 	private:
+		bool repeat;
 		char *videoStream;
 		VideoCapture *capture;
 };

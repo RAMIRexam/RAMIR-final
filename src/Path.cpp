@@ -13,13 +13,14 @@ Path::Path(Blob * blob, int pathLife)
 	remainingLife = nLife;
 
 	blobs = new vector<Blob *>();
-	ptrLastBlob = NULL;
-	staSOL = LINESIDE_NOTDEFINED;				//will be determined in the counting class
+
+	staSOL = LINESIDE_NOTDEFINED;				//used in COUNTER_CC, will be set first iteration.
+	curSOL = LINESIDE_NOTDEFINED;				//will be updated each iteration in the counting class
 
 	blobs->push_back(blob);
 	ptrLastBlob = blob;
 
-	setCounted(false);
+	isCounted = false;
 
 }
 
