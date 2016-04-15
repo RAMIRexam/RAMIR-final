@@ -6,8 +6,9 @@
 //===================CONSTRUCTOR  DESTRUCTOR===============
 
 
-Input::Input()
+Input::Input(bool rep)
 {
+	repeat = rep;										//true if the program shall loop forever
 	capture = new VideoCapture(0);
 	videoStream = NULL;
 
@@ -15,17 +16,19 @@ Input::Input()
 		throw "Could not open videocapture!";
 }
 
-Input::Input(int a)
+Input::Input(int camera, bool rep)
 {
-	capture = new VideoCapture(a);
+	repeat = rep;										//true if the program shall loop forever
+	capture = new VideoCapture(camera);
 	videoStream = NULL;
 
 	if (!capture->isOpened())
 		throw "Could not open videocapture!";
 }
 
-Input::Input(char *a)
+Input::Input(char *a, bool rep)
 {
+	repeat = rep;										//true if the program shall loop forever
 	capture = new VideoCapture(a);
 	videoStream = a;
 
@@ -49,7 +52,7 @@ Mat Input::getImage()
 	Mat frame;
 	*capture >> frame;
 
-	if (frame.empty() && *videoStream != NULL)
+	if (frame.empty() && *videoStream != NULL && repeat)				//Video has ended, shall repeat
 	{
 		capture->release();
 		capture->open(videoStream);

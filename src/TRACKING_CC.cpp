@@ -1,17 +1,29 @@
 /*
-TRACKER_CC = "tracker Counted Check"
+Copyright RAMIR (Räkning av människor i rörelse)
+Del2 i Examensarbete - implementering av projektalgoritmen (egna bildanalysalgoritmer)".
+
+År 2016
+Emil Andersson and Niklas Schedin
+----------------------------------------------------------------------------------------
+Class:
+TRACKER_CC = "tracker Counted Check". 
+
+About:
+Counted check was first implemented in "part one" (Automatic counting). When the 
+pedestrian is counted once, it will be placed in a ACTracker. If the jitter makes
+the pedestrian pass the counting line multiple times when it just does this ones,
+this function will resolve this problem.
+
+Programmed by Emil
 */
 
 #include "TRACKING_CC.hpp"
 
 
-
-
 TRACKING_CC::TRACKING_CC(Data * data) : AbstractTracking(data)
 {
-
+	trackerLife = 10;
 }
-
 
 TRACKING_CC::~TRACKING_CC()
 {
@@ -22,41 +34,60 @@ void TRACKING_CC::saveSettings()
 }
 
 
-
 void TRACKING_CC::track()
 {
-	int trackerLife = 10;
-
-
-	vector<Path *> *paths = ptrData->getPathVector();
-	vector<Blob *> *blobs = ptrData->getFrameBlobVector();
-
-	ptrData->getLastImage()->copyTo(*out);
-
-	
 	/*
 	/	Tests:
 	/		(1) Check if all trackers is processed at the end
-	/
 	*/
 
+	vector<Path *> *paths = ptrData->getPathVector();
 
-	/***** CODE TO PUZZLE LAST VERSION WITH THIS *****/
-	vector<Path*> trackers;
-	vector<Path*> ACTrackers;
+	ptrData->getLastImage()->copyTo(*out);
+
+
+	//Create trackers and ACTrackers that the this function used to work with
+	//
+	//				->--trackers
+	//Path  ---->-->----ACTrackers
+	
+	vector<Path*> trackers, ACTrackers, tempPath;
 
 	for (Path *p : *paths) {
-		if (p->isCountedCheck()) {
+		if (p->isCountedCheck())
 			ACTrackers.push_back(p);
-		}
-		else {
+		else
 			trackers.push_back(p);
-		}
 	}
-	/**************************************************/
 
 
+	//THE ACTUAL TRACKING FUNCTION
+	tempPath = AutomaticTracking(trackers, ACTrackers);
 
+
+	//Make trackers and ACtrackers to paths again
+	//
+	//trackers    -->-
+	//ACtrackers  -->--->--- Path
+
+	ptrData->removeAllPaths();
+	for (Path* p : tempPath) {
+		ptrData->addPath(p);
+	}
+
+
+	ptrData->addImage(out);
+}
+
+/**************************************************************************************************************************************
+/	This it the code that separates different paths if they have been counted or not.
+/	The code is the same as from "part 1" in the examwork (AutomaticCounting)
+**************************************************************************************************************************************/
+
+vector<Path*> TRACKING_CC::AutomaticTracking(vector<Path*> trackers, vector<Path*> ACTrackers) {
+	
+	vector<Blob *> *blobs = ptrData->getFrameBlobVector();
+	
 	//MOVE BLOBS TO ACTRACKERS
 	if (ACTrackers.size() > 0) {									//if there exists already counted trackers, the blobs belonging to this trackers must first be removed
 		ACTrackers = intersectionTest(blobs, ACTrackers);			//intersectionTest will move blobs to "already counted trackers"
@@ -65,7 +96,7 @@ void TRACKING_CC::track()
 	//CREATE NEW TRACKERS FOR ALL BLOBS
 	if (trackers.size() == 0) {
 		for (Blob* b : *blobs) {									//No trackers exists. All blobs will turn to a tracker
-			
+
 			Path *p = new Path(b, trackerLife);
 
 			p->processed = true;									//DEBUG, blob has been added this iteration
@@ -95,16 +126,16 @@ void TRACKING_CC::track()
 
 
 	//DELETE TRACKERS IF DEAD
-	for (unsigned int j = 0; j < trackers.size(); j++){
+	for (unsigned int j = 0; j < trackers.size(); j++) {
 		Path *p = trackers.at(j);
 		//Path *p = *paths->begin() + j;
 		assert(p->processed == true);								//(1) DEBUG
-	
+
 		if (!p->isAlive())
 		{
 			trackers.erase(trackers.begin() + j);
 			delete p;
-		}	
+		}
 	}
 	//DELETE ACTRACKERS IF DEAD
 	for (unsigned int j = 0; j < ACTrackers.size(); j++) {
@@ -124,27 +155,21 @@ void TRACKING_CC::track()
 	for (Path *t : ACTrackers) { t->processed = false; }			//reset processed for next iteration
 
 
-	///** make trackers and ACtrackers to paths again****/
-	vector<Path*>* tempPath = new vector<Path*>();
+		
+																	
+	vector<Path*> tempPath;										//Code to create return variable
 	for (Path* p : trackers) {
-		tempPath->push_back(p);
+		tempPath.push_back(p);
 	}
+	
+
 	for (Path* p : ACTrackers) {
-		tempPath->push_back(p);
-	}
-	/****************************************************/
-	
-	ptrData->removeAllPaths();
-	
-	for (Path* p : *tempPath) {
-		ptrData->addPath(p);
+		tempPath.push_back(p);
 	}
 
-	ptrData->addImage(out);
-	
+	return tempPath;
 
 }
-
 
 
 /**************************************************************************************************************************************
@@ -186,22 +211,31 @@ vector<Path*> TRACKING_CC::intersectionTest(vector<Blob*>* blobs, vector<Path*> 
 			assert(!p->getLastBlob()->isEmpty());								//(1) DEBUG
 
 			if ((b->getRect() & p->getLastBlob()->getRect()).area() > 0) {			//intersection test
-				Mat hist1 = b->getHist();
-				Mat hist2 = p->getLastBlob()->getHist();
+				
 
-				double bhatta = compareHist(b->getHist(), p->getLastBlob()->getHist(), CV_COMP_BHATTACHARYYA);
+				//(1) - Use histogram
+				//Mat hist1 = b->getHist();
+				
+				//Mat hist2 = p->getLastBlob()->getHist();
+				//double bhatta = compareHist(b->getHist(), p->getLastBlob()->getHist(), CV_COMP_BHATTACHARYYA);
 
-				if (bhatta < minBhatta) {
-					minBhatta = bhatta;
+				//if (bhatta < minBhatta) {
+				//	minBhatta = bhatta;
 
-					bestBlob = b;
-				}
+				//	bestBlob = b;
+				//}
+
+
+				//(2) - Dont use histogram
+				bestBlob = b;
+
+
 			}
 			else { restBlobs->push_back(b); }
 		}
 		assert(blobcounter == numberBlobs);										//if blob is pop'ed, will all blobs still be iterated?
 
-		*blobs = *restBlobs;
+		*blobs = *restBlobs;													//
 
 		if (!bestBlob->isEmpty()) {												//If intersection
 			p->addBlob(bestBlob); 

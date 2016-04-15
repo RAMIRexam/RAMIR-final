@@ -21,7 +21,6 @@
 
 //Detection
 #include "DETECTION.hpp"
-#include "FIT_OBJECT.hpp"
 
 //Tracking
 #include "TRACKING.hpp"

@@ -4,20 +4,21 @@
 
 COUNTER_CC::COUNTER_CC(Data *data) : AbstractCounting(data)
 {
-	//eeline coordinates
-	int cols = ptrData->getImage()->cols;
-	int rows = ptrData->getImage()->rows;
-	
+
+	bool pauseForLineCheckDEBUG = true;				//Debug variable
+
+
+													//eeline coordinates
+	int cols = ptrData->getLastImage()->cols;
+	int rows = ptrData->getLastImage()->rows;
+
 	eelineX = cols / 2;
 	upperLineY = 0;
 	lowerLineY = rows;
 
-
 	//Two points defining the eeline
 	upperPoint = new Point(eelineX, upperLineY);
 	lowerPoint = new Point(eelineX, lowerLineY);
-
-	bool pauseForLineCheckDEBUG = true;				//Debug variable
 
 	minTrackToBeCounted = 0;						//How many tracks an object has to be tracked before it accepted into the ACTracker
 
