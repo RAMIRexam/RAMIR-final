@@ -23,7 +23,7 @@
 	hittar förmånga objekt.
 
 *	Implementera vidare TRACKING klassen
-	PENDING
+	DONE
 
 *	Det kan finnas en minnesläcka, undersök
 	EDIT: efter fortsatt användande så har programmet fortsatt att ta mer plats i minnet
