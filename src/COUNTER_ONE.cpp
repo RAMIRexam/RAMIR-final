@@ -82,3 +82,11 @@ void COUNTER_ONE::count()
 void COUNTER_ONE::saveSettings()
 {
 }
+
+
+
+void COUNTER_ONE::postExecution()
+{
+	cout << "Up counter: " << right2Left << endl;
+	cout << "Down counter: " << left2Right << endl;
+}

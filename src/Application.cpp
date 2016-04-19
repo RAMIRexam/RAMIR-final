@@ -157,11 +157,12 @@ void Application::start()
 	addDetection(new DETECTION(data));
 
 	//TRACKING
-	//addTracking(new TRACKING(data));
+	addTracking(new TRACKING(data));
+	//addTracking(new TRACKING_CC(data));
 
-	addTracking(new TRACKING_CC(data));
-
-	addCounting(new COUNTER_CC(data));
+	//COUNTING
+	addCounting(new COUNTER_ONE(data));
+	//addCounting(new COUNTER_CC(data));
 
 	display->createWindow("TEST1");
 	display->createWindow("TEST2");
@@ -207,7 +208,11 @@ void Application::start()
 
 	//SAVE SETTINGS FOR EACH OBJECT
 	saveSettings();
+
+	for (AbstractCounting *c : *countingObjectVector) {
+		c->postExecution();
 	}
+}
 
 
 

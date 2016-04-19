@@ -8,7 +8,7 @@ using namespace cv;
 class Input
 {
 	public:
-		Input(bool repeat = true);		//OPEN DEFAULT CAMERA
+		Input(bool repeat = true);					//OPEN DEFAULT CAMERA
 		Input(int camera, bool repeat = true);		//OPEN CAMERA
 		Input(char * filename, bool repeat = true);	//OPEN VIDEOFILE
 		~Input();

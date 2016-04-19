@@ -4,6 +4,10 @@
 #include "AbstractCounting.hpp"
 #include "Tools.hpp"
 
+#include <iostream>
+
+using namespace std;
+
 class COUNTER_ONE: public AbstractCounting
 {
 	public:
@@ -13,6 +17,7 @@ class COUNTER_ONE: public AbstractCounting
 		// Inherited via AbstractCounting
 		void count();
 		void saveSettings();
+		void postExecution();
 
 	private:
 		int left2Right;
