@@ -18,6 +18,14 @@ class COUNTER_ONE: public AbstractCounting
 		int left2Right;
 		int right2Left;
 
+		int textColorLeftB;
+		int textColorLeftG;
+		int textColorLeftR;
+
+		int textColorRightB;
+		int textColorRightG;
+		int textColorRightR;
+
 };
 
 #endif // !COUNTER_ONE_HPP

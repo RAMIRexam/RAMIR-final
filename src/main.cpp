@@ -15,7 +15,7 @@ using namespace std;
 int main()
 {
 	try {
-		Application app("humanwalk1.avi");
+		Application app("humanwalk4.avi");
 
 		app.start();
 

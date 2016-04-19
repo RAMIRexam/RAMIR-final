@@ -117,11 +117,11 @@
     <ClInclude Include="..\..\src\BGS.hpp">
       <Filter>Header Files\Segment</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Definitions.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\TRACKING_CC.hpp">
       <Filter>Header Files\Tracking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Definitions.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\COUNTER_CC.hpp">
       <Filter>Header Files\Counter</Filter>
