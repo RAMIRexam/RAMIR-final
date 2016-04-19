@@ -52,7 +52,7 @@ Application::Application(int a)
 	} catch (char *strException) {
 		throw strException;
 	}
-	
+
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
 	time_t now = time(0);
@@ -81,7 +81,7 @@ Application::Application(int a)
 Application::Application(char *str)
 {
 	try {
-		input = new Input(str);
+		input = new Input(str, false);
 	} catch (char *strException) {
 		throw strException;
 	}
@@ -135,6 +135,16 @@ void Application::start()
 {
 	Mat frame;
 	
+
+	/*Emil test (shall be done once?)***********/
+	frame = input->getImage();
+
+	display->resizeImage(&frame);
+
+	data->addImage(&frame);
+	/*******************************************/
+
+	
 	//SEGMENT
 	//addSegment(new ROI_BG(&data));
 	addSegment(new MOG_BGS_HSV(data));
@@ -147,12 +157,11 @@ void Application::start()
 	addDetection(new DETECTION(data));
 
 	//TRACKING
-	addTracking(new TRACKING(data));
-	//addTracking(new TRACKING_CC(data));
+	//addTracking(new TRACKING(data));
 
-	//COUNTING
-	addCounting(new COUNTER_ONE(data));
-	//addCounting(new COUNTER_CC(data));
+	addTracking(new TRACKING_CC(data));
+
+	addCounting(new COUNTER_CC(data));
 
 	display->createWindow("TEST1");
 	display->createWindow("TEST2");
@@ -162,7 +171,10 @@ void Application::start()
 	{
 		frame = input->getImage();
 		
-		display->resizeImage(&frame);
+		if (frame.empty()) {		//Video has ended, shall NOT repeat
+			//Print log information here
+			break;
+		}
 
 		data->addImage(&frame);
 
@@ -195,7 +207,7 @@ void Application::start()
 
 	//SAVE SETTINGS FOR EACH OBJECT
 	saveSettings();
-}
+	}
 
 
 

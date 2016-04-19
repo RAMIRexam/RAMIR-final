@@ -44,7 +44,7 @@ class Path
 		int get_curSOL();					//get current side of line
 		void set_curSOL(int lineSide);		//set current side of line
 
-		bool processed;							//DEBUG, Used in TRACKING_CC to make shure the path has been processed in some way at the end of the code
+		bool processed;						//DEBUG, Used in TRACKING_CC to make shure the path has been processed in some way at the end of the code
 
 	private:
 		Point2f headingSum;
