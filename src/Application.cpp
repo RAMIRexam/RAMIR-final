@@ -146,8 +146,9 @@ void Application::start()
 
 	
 	//SEGMENT
-	//addSegment(new ROI_BG(&data));
-	addSegment(new MOG_BGS_HSV(data));
+	addSegment(new BGS(data));
+	//addSegment(new ROI_BG(data));
+	//addSegment(new MOG_BGS_HSV(data));
 
 	//FILTER
 	addFilter(new ERODE(data));
@@ -161,7 +162,9 @@ void Application::start()
 	//addTracking(new TRACKING_CC(data));
 
 	//COUNTING
-	addCounting(new COUNTER_ONE(data));
+	//addCounting(new COUNTER_ONE(data));
+	addCounting(new COUNTER_ONE_HYST(data));
+	//addCounting(new COUNTER_TWO(data));
 	//addCounting(new COUNTER_CC(data));
 
 	display->createWindow("TEST1");

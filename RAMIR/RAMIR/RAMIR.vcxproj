@@ -153,6 +153,7 @@
     <ClInclude Include="..\..\src\Blob.hpp" />
     <ClInclude Include="..\..\src\COUNTER_CC.hpp" />
     <ClInclude Include="..\..\src\COUNTER_ONE.hpp" />
+    <ClInclude Include="..\..\src\COUNTER_ONE_HYST.hpp" />
     <ClInclude Include="..\..\src\COUNTER_TWO.hpp" />
     <ClInclude Include="..\..\src\Data.hpp" />
     <ClInclude Include="..\..\src\Definitions.hpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="..\..\src\BGS.cpp" />
     <ClCompile Include="..\..\src\Blob.cpp" />
     <ClCompile Include="..\..\src\COUNTER_ONE.cpp" />
+    <ClCompile Include="..\..\src\COUNTER_ONE_HYST.cpp" />
     <ClCompile Include="..\..\src\COUNTER_TWO.cpp" />
     <ClCompile Include="..\..\src\Data.cpp" />
     <ClCompile Include="..\..\src\DETECTION.cpp" />

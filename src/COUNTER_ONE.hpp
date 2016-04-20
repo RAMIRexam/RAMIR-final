@@ -20,8 +20,8 @@ class COUNTER_ONE: public AbstractCounting
 		void postExecution();
 
 	private:
-		int left2Right;
-		int right2Left;
+		int downCnt;
+		int upCnt;
 
 		int textColorLeftB;
 		int textColorLeftG;

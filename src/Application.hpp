@@ -29,6 +29,7 @@
 
 //Counting
 #include "COUNTER_ONE.hpp"
+#include "COUNTER_ONE_HYST.hpp"
 #include "COUNTER_TWO.hpp"
 #include "COUNTER_CC.hpp"
 
