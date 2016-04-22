@@ -41,3 +41,4 @@ RAMIR/RAMIR/x64/*
 *.avi
 *.props
 /RAMIR/RAMIR.VC.db
+*.csv

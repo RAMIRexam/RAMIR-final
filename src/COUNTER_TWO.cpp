@@ -4,8 +4,6 @@
 //=====================CONSTRUCTOR DESTRUCTOR======================
 COUNTER_TWO::COUNTER_TWO(Data * data) : AbstractCounting(data)
 {
-	downCnt = 0;
-	upCnt = 0;
 }
 
 
@@ -29,26 +27,26 @@ void COUNTER_TWO::count()
 		size = blobs->size();
 
 		if (p->getHeading().y < 0 && !blobs->at(size - 1)->isEmpty() && !blobs->at(size - 2)->isEmpty()		//CHECKS IF BLOB HAS PASSED FROM RIGHT TO LEFT OVER THE COUNTING LINE
-			&& blobs->at(size - 1)->getCentroid().y <= ptrData->getLastImage()->rows / 3
-			&& blobs->at(size - 2)->getCentroid().y > ptrData->getLastImage()->rows / 3)
+			&& blobs->at(size - 1)->getCentroid().y <= (2 * ptrData->getLastImage()->rows) / 5
+			&& blobs->at(size - 2)->getCentroid().y > (2 * ptrData->getLastImage()->rows) / 5)
 		{
-			upCnt++;
+			ptrData->upCnt++;
 		}
 		else if (p->getHeading().y > 0 && !blobs->at(size - 1)->isEmpty() && !blobs->at(size - 2)->isEmpty()	//CHECKS IF BLOB HAS PASSED FROM LEFT TO RIGHT OVER THE COUNTING LINE
-			&& blobs->at(size - 1)->getCentroid().y >= 2 * ptrData->getLastImage()->rows / 3
-			&& blobs->at(size - 2)->getCentroid().y < 2 * ptrData->getLastImage()->rows / 3)
+			&& blobs->at(size - 1)->getCentroid().y >= (3 * ptrData->getLastImage()->rows) / 5
+			&& blobs->at(size - 2)->getCentroid().y < (3 * ptrData->getLastImage()->rows) / 5)
 		{
-			downCnt++;
+			ptrData->downCnt++;
 		}
 	}
 
 	//DRAW COUNTERS ON IMAGE
-	putText(*out, Tools::int2String(upCnt), Point(30, 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 0, 255), 2);
-	putText(*out, Tools::int2String(downCnt), Point(ptrData->getLastImage()->cols - 50, ptrData->getLastImage()->rows - 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 0, 255), 2);
+	putText(*out, Tools::int2String(ptrData->upCnt), Point(30, 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 0, 255), 2);
+	putText(*out, Tools::int2String(ptrData->downCnt), Point(ptrData->getLastImage()->cols - 50, ptrData->getLastImage()->rows - 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(0, 0, 255), 2);
 
 	//DRAW COUNTING LINES
-	line(*out, Point(0, out->rows / 3), Point(out->cols, out->rows / 3), Scalar(255, 0, 0), 2);
-	line(*out, Point(0, 2 * out->rows / 3), Point(out->cols, 2 * out->rows / 3), Scalar(255, 0, 0), 2);
+	line(*out, Point(0, (2 * out->rows) / 5), Point(out->cols, (2 * out->rows) / 5), Scalar(255, 0, 0), 2);
+	line(*out, Point(0, (3 * out->rows) / 5), Point(out->cols, (3 * out->rows) / 5), Scalar(255, 0, 0), 2);
 
 	ptrData->addImage(out);
 }
@@ -56,11 +54,4 @@ void COUNTER_TWO::count()
 
 void COUNTER_TWO::saveSettings()
 {
-}
-
-
-void COUNTER_TWO::postExecution()
-{
-	cout << "Up counter: " << upCnt << endl;
-	cout << "Down counter: " << downCnt << endl;
 }

@@ -17,11 +17,8 @@ class COUNTER_ONE: public AbstractCounting
 		// Inherited via AbstractCounting
 		void count();
 		void saveSettings();
-		void postExecution();
 
 	private:
-		int downCnt;
-		int upCnt;
 
 		int textColorLeftB;
 		int textColorLeftG;

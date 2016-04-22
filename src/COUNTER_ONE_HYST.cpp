@@ -4,9 +4,6 @@
 //=====================CONSTRUCTOR DESTRUCTOR======================
 COUNTER_ONE_HYST::COUNTER_ONE_HYST(Data *data) : AbstractCounting(data)
 {
-	downCnt = 0;
-	upCnt = 0;
-
 	textColorLeftB = rand() % 255;
 	textColorLeftG = rand() % 255;
 	textColorLeftR = rand() % 255;
@@ -62,7 +59,7 @@ void COUNTER_ONE_HYST::count()
 			&& blobs->at(size - 2)->getCentroid().y > ptrData->getLastImage()->rows / 2
 			&& !p->isCountedCheck())
 		{
-			upCnt++;
+			ptrData->upCnt++;
 			p->setCounted(true);
 
 			textColorRightB = rand() % 255;
@@ -74,7 +71,7 @@ void COUNTER_ONE_HYST::count()
 			&& blobs->at(size - 2)->getCentroid().y < ptrData->getLastImage()->rows / 2
 			&& !p->isCountedCheck())
 		{
-			downCnt++;
+			ptrData->downCnt++;
 			p->setCounted(true);
 
 			textColorLeftB = rand() % 255;
@@ -84,8 +81,8 @@ void COUNTER_ONE_HYST::count()
 	}
 
 	//DRAW COUNTERS ON IMAGE
-	putText(*out, Tools::int2String(upCnt), Point(30, 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(textColorRightB, textColorRightG, textColorRightR), 2);
-	putText(*out, Tools::int2String(downCnt), Point(ptrData->getLastImage()->cols - 50, ptrData->getLastImage()->rows - 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(textColorLeftB, textColorLeftG, textColorLeftR), 2);
+	putText(*out, Tools::int2String(ptrData->upCnt), Point(30, 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(textColorRightB, textColorRightG, textColorRightR), 2);
+	putText(*out, Tools::int2String(ptrData->downCnt), Point(ptrData->getLastImage()->cols - 50, ptrData->getLastImage()->rows - 30), FONT_HERSHEY_SIMPLEX, 1, Scalar(textColorLeftB, textColorLeftG, textColorLeftR), 2);
 
 	//DRAW COUNTING LINES
 	line(*out, Point(0, out->rows / 2), Point(out->cols, out->rows / 2), Scalar(255, 0, 0), 2);
@@ -100,11 +97,4 @@ void COUNTER_ONE_HYST::count()
 
 void COUNTER_ONE_HYST::saveSettings()
 {
-}
-
-
-void COUNTER_ONE_HYST::postExecution()
-{
-	cout << "Up counter: " << upCnt << endl;
-	cout << "Down counter: " << downCnt << endl;
 }
