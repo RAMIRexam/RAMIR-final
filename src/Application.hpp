@@ -7,6 +7,7 @@
 #include "Tools.hpp"
 #include "Input.hpp"
 #include "Display.hpp"
+#include "Statistic.hpp"
 #include "Definitions.hpp"
 
 //Segment
@@ -29,6 +30,7 @@
 
 //Counting
 #include "COUNTER_ONE.hpp"
+#include "COUNTER_ONE_HYST.hpp"
 #include "COUNTER_TWO.hpp"
 #include "COUNTER_CC.hpp"
 
@@ -60,6 +62,7 @@ class Application
 		string dateTime;
 		int nImagesSaved;
 		Mat lastImage;
+		int frameNr;
 
 		Input *input;
 		Display *display;

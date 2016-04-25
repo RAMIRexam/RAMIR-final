@@ -1,5 +1,5 @@
-#ifndef COUNTER_ONE_HPP
-#define COUNTER_ONE_HPP
+#ifndef COUNTER_ONE_HYST_HPP
+#define COUNTER_ONE_HYST_HPP
 
 #include "AbstractCounting.hpp"
 #include "Tools.hpp"
@@ -8,11 +8,11 @@
 
 using namespace std;
 
-class COUNTER_ONE: public AbstractCounting
+class COUNTER_ONE_HYST : public AbstractCounting
 {
 	public:
-		COUNTER_ONE(Data *data);
-		~COUNTER_ONE();
+		COUNTER_ONE_HYST(Data *data);
+		~COUNTER_ONE_HYST();
 
 		// Inherited via AbstractCounting
 		void count();
@@ -30,4 +30,4 @@ class COUNTER_ONE: public AbstractCounting
 
 };
 
-#endif // !COUNTER_ONE_HPP
+#endif // !COUNTER_ONE_HYST_HPP

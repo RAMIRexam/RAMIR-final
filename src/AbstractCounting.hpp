@@ -18,8 +18,8 @@ class AbstractCounting
 		};
 		//VECTOR SHOULD DELETE Out Mat
 
-		virtual void count() = 0; //Preform function and then call Data::addImage(Mat*)
-		virtual void saveSettings() = 0;
+		virtual void count() = 0;			//Preform function and then call Data::addImage(Mat*)
+		virtual void saveSettings() = 0;	//Save method settings
 
 	protected:
 		Mat *out;

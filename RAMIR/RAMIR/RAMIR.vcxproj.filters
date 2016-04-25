@@ -126,6 +126,15 @@
     <ClInclude Include="..\..\src\COUNTER_CC.hpp">
       <Filter>Header Files\Counter</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\COUNTER_ONE_HYST.hpp">
+      <Filter>Header Files\Counter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Statistic.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\TRACKING_GHOST.hpp">
+      <Filter>Header Files\Tracking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\Application.cpp">
@@ -190,6 +199,15 @@
     </ClCompile>
     <ClCompile Include="..\..\src\COUNTER_CC.cpp">
       <Filter>Source Files\Counter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\COUNTER_ONE_HYST.cpp">
+      <Filter>Source Files\Counter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Statistic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\TRACKING_GHOST.cpp">
+      <Filter>Source Files\Tracking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

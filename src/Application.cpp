@@ -21,6 +21,8 @@ Application::Application()
 		throw strException;
 	}
 
+	frameNr = 1;
+
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
 	time_t now = time(0);
@@ -52,6 +54,8 @@ Application::Application(int a)
 	} catch (char *strException) {
 		throw strException;
 	}
+
+	frameNr = 1;
 
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
@@ -85,6 +89,8 @@ Application::Application(char *str)
 	} catch (char *strException) {
 		throw strException;
 	}
+
+	frameNr = 1;
 
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
@@ -146,7 +152,8 @@ void Application::start()
 
 	
 	//SEGMENT
-	//addSegment(new ROI_BG(&data));
+	//addSegment(new BGS(data));
+	//addSegment(new ROI_BG(data));
 	addSegment(new MOG_BGS_HSV(data));
 
 	//FILTER
@@ -157,11 +164,14 @@ void Application::start()
 	addDetection(new DETECTION(data));
 
 	//TRACKING
-	//addTracking(new TRACKING(data));
+	addTracking(new TRACKING(data));
+	//addTracking(new TRACKING_CC(data));
 
-	addTracking(new TRACKING_CC(data));
-
-	addCounting(new COUNTER_CC(data));
+	//COUNTING
+	//addCounting(new COUNTER_ONE(data));
+	addCounting(new COUNTER_ONE_HYST(data));
+	//addCounting(new COUNTER_TWO(data));
+	//addCounting(new COUNTER_CC(data));
 
 	display->createWindow("TEST1");
 	display->createWindow("TEST2");
@@ -170,15 +180,10 @@ void Application::start()
 	while (!buttonControl())
 	{
 		frame = input->getImage();
-		
-		if (frame.empty()) {		//Video has ended, shall NOT repeat
-			//Print log information here
-			break;
-		}
 
 		data->addImage(&frame);
 
-		display->showImage(data->getImage(), 0);
+		//display->showImage(data->getImage(), 0);
 
 		for (AbstractSegment *s : *segmentObjectVector) {
 			s->segment();
@@ -199,15 +204,35 @@ void Application::start()
 		for (AbstractCounting *c : *countingObjectVector) {
 			c->count();
 		}
-		display->showImage(data->getLastImage(), 1);
+		display->showImage(data->getLastImage(), 0);
 		lastImage = *data->getLastImage();
 
 		data->clearImages();
+		frameNr++;
+
+		if (frameNr % 250 == 0)
+		{
+			cout << "=====" << frameNr << "=====" << endl;
+			cout << "Up counter: " << data->upCnt << endl;
+			cout << "Down counter: " << data->downCnt << endl;
+			cout << "=====================" << endl << endl;
+
+			Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + "," + Tools::int2String(data->upCnt) + "," + Tools::int2String(data->downCnt));
+		}
 	}
 
+	
 	//SAVE SETTINGS FOR EACH OBJECT
 	saveSettings();
-	}
+
+
+	cout << "=====" << frameNr << "=====" << endl;
+	cout << "Up counter: " << data->upCnt << endl;
+	cout << "Down counter: " << data->downCnt << endl;
+	cout << "=====================" << endl << endl;
+
+	Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + "," + Tools::int2String(data->upCnt) + "," + Tools::int2String(data->downCnt));
+}
 
 
 

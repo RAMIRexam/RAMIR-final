@@ -26,7 +26,8 @@ class Data
 		void clearFrameBlobVector();
 		//===============================
 
-
+		int upCnt;
+		int downCnt;
 
 	private:
 		int nImageCnt;

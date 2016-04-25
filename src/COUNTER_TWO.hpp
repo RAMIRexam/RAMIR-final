@@ -4,6 +4,8 @@
 #include "AbstractCounting.hpp"
 #include "Tools.hpp"
 
+#include <iostream>
+
 class COUNTER_TWO : public AbstractCounting
 {
 	public:
@@ -15,8 +17,6 @@ class COUNTER_TWO : public AbstractCounting
 		void saveSettings();
 
 	private:
-		int left2Right;
-		int right2Left;
 
 };
 
