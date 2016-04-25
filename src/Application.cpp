@@ -180,15 +180,10 @@ void Application::start()
 	while (!buttonControl())
 	{
 		frame = input->getImage();
-		
-		if (frame.empty()) {		//Video has ended, shall NOT repeat
-			//Print log information here
-			break;
-		}
 
 		data->addImage(&frame);
 
-		display->showImage(data->getImage(), 0);
+		//display->showImage(data->getImage(), 0);
 
 		for (AbstractSegment *s : *segmentObjectVector) {
 			s->segment();
@@ -209,7 +204,7 @@ void Application::start()
 		for (AbstractCounting *c : *countingObjectVector) {
 			c->count();
 		}
-		display->showImage(data->getLastImage(), 1);
+		display->showImage(data->getLastImage(), 0);
 		lastImage = *data->getLastImage();
 
 		data->clearImages();
@@ -222,7 +217,7 @@ void Application::start()
 			cout << "Down counter: " << data->downCnt << endl;
 			cout << "=====================" << endl << endl;
 
-			Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + ";" + Tools::int2String(data->upCnt) + ";" + Tools::int2String(data->downCnt));
+			Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + "," + Tools::int2String(data->upCnt) + "," + Tools::int2String(data->downCnt));
 		}
 	}
 
@@ -236,7 +231,7 @@ void Application::start()
 	cout << "Down counter: " << data->downCnt << endl;
 	cout << "=====================" << endl << endl;
 
-	Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + ";" + Tools::int2String(data->upCnt) + ";" + Tools::int2String(data->downCnt));
+	Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + "," + Tools::int2String(data->upCnt) + "," + Tools::int2String(data->downCnt));
 }
 
 
