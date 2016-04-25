@@ -21,6 +21,8 @@ Application::Application()
 		throw strException;
 	}
 
+	frameNr = 1;
+
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
 	time_t now = time(0);
@@ -52,6 +54,8 @@ Application::Application(int a)
 	} catch (char *strException) {
 		throw strException;
 	}
+
+	frameNr = 1;
 
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
@@ -85,6 +89,8 @@ Application::Application(char *str)
 	} catch (char *strException) {
 		throw strException;
 	}
+
+	frameNr = 1;
 
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
@@ -207,14 +213,30 @@ void Application::start()
 		lastImage = *data->getLastImage();
 
 		data->clearImages();
+		frameNr++;
+
+		if (frameNr % 250 == 0)
+		{
+			cout << "=====" << frameNr << "=====" << endl;
+			cout << "Up counter: " << data->upCnt << endl;
+			cout << "Down counter: " << data->downCnt << endl;
+			cout << "=====================" << endl << endl;
+
+			Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + ";" + Tools::int2String(data->upCnt) + ";" + Tools::int2String(data->downCnt));
+		}
 	}
 
+	
 	//SAVE SETTINGS FOR EACH OBJECT
 	saveSettings();
 
-	for (AbstractCounting *c : *countingObjectVector) {
-		c->postExecution();
-	}
+
+	cout << "=====" << frameNr << "=====" << endl;
+	cout << "Up counter: " << data->upCnt << endl;
+	cout << "Down counter: " << data->downCnt << endl;
+	cout << "=====================" << endl << endl;
+
+	Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + ";" + Tools::int2String(data->upCnt) + ";" + Tools::int2String(data->downCnt));
 }
 
 

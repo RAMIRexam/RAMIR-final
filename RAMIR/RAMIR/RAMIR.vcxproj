@@ -167,6 +167,7 @@
     <ClInclude Include="..\..\src\Path.hpp" />
     <ClInclude Include="..\..\src\ROI_BG.hpp" />
     <ClInclude Include="..\..\src\Settings.hpp" />
+    <ClInclude Include="..\..\src\Statistic.hpp" />
     <ClInclude Include="..\..\src\Tools.hpp" />
     <ClInclude Include="..\..\src\TRACKING.hpp" />
     <ClInclude Include="..\..\src\TRACKING_CC.hpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="..\..\src\ROI_BG.cpp" />
     <ClCompile Include="..\..\src\Settings.cpp" />
     <ClCompile Include="..\..\src\COUNTER_CC.cpp" />
+    <ClCompile Include="..\..\src\Statistic.cpp" />
     <ClCompile Include="..\..\src\Tools.cpp" />
     <ClCompile Include="..\..\src\TRACKING.cpp" />
     <ClCompile Include="..\..\src\TRACKING_CC.cpp" />

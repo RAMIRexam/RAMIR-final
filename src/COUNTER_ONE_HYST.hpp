@@ -10,26 +10,23 @@ using namespace std;
 
 class COUNTER_ONE_HYST : public AbstractCounting
 {
-public:
-	COUNTER_ONE_HYST(Data *data);
-	~COUNTER_ONE_HYST();
+	public:
+		COUNTER_ONE_HYST(Data *data);
+		~COUNTER_ONE_HYST();
 
-	// Inherited via AbstractCounting
-	void count();
-	void saveSettings();
-	void postExecution();
+		// Inherited via AbstractCounting
+		void count();
+		void saveSettings();
 
-private:
-	int downCnt;
-	int upCnt;
+	private:
 
-	int textColorLeftB;
-	int textColorLeftG;
-	int textColorLeftR;
+		int textColorLeftB;
+		int textColorLeftG;
+		int textColorLeftR;
 
-	int textColorRightB;
-	int textColorRightG;
-	int textColorRightR;
+		int textColorRightB;
+		int textColorRightG;
+		int textColorRightR;
 
 };
 

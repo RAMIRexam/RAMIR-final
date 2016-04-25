@@ -15,11 +15,8 @@ class COUNTER_TWO : public AbstractCounting
 		// Inherited via AbstractCounting
 		void count();
 		void saveSettings();
-		void postExecution();
 
 	private:
-		int downCnt;
-		int upCnt;
 
 };
 

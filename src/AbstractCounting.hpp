@@ -20,7 +20,6 @@ class AbstractCounting
 
 		virtual void count() = 0;			//Preform function and then call Data::addImage(Mat*)
 		virtual void saveSettings() = 0;	//Save method settings
-		virtual void postExecution() = 0;	//Executes after video has come to an end
 
 	protected:
 		Mat *out;

@@ -6,6 +6,9 @@
 
 Data::Data()
 {
+	upCnt = 0;
+	downCnt = 0;
+
 	nImageCnt = 0;
 	
 	frameBlobs = nullptr;

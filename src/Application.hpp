@@ -7,6 +7,7 @@
 #include "Tools.hpp"
 #include "Input.hpp"
 #include "Display.hpp"
+#include "Statistic.hpp"
 #include "Definitions.hpp"
 
 //Segment
@@ -61,6 +62,7 @@ class Application
 		string dateTime;
 		int nImagesSaved;
 		Mat lastImage;
+		int frameNr;
 
 		Input *input;
 		Display *display;
