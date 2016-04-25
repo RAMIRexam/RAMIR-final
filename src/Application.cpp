@@ -146,9 +146,9 @@ void Application::start()
 
 	
 	//SEGMENT
-	addSegment(new BGS(data));
+	//addSegment(new BGS(data));
 	//addSegment(new ROI_BG(data));
-	//addSegment(new MOG_BGS_HSV(data));
+	addSegment(new MOG_BGS_HSV(data));
 
 	//FILTER
 	addFilter(new ERODE(data));

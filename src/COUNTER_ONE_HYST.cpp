@@ -43,7 +43,7 @@ void COUNTER_ONE_HYST::count()
 	{
 		if (p->isCountedCheck()
 			&& p->getLastBlob()->getCentroid().y < (ptrData->getLastImage()->rows / 2) - lineHyst
-			&& p->getLastBlob()->getCentroid().y >(ptrData->getLastImage()->rows / 2) + lineHyst)
+			&& p->getLastBlob()->getCentroid().y > (ptrData->getLastImage()->rows / 2) + lineHyst)
 		{
 			p->setCounted(false);
 		}
