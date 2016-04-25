@@ -38,12 +38,7 @@ void COUNTER_ONE_HYST::count()
 	int lineHyst = 20;
 	for (Path *p : *paths)
 	{
-		if (p->isCountedCheck()
-			&& p->getLastBlob()->getCentroid().y < (ptrData->getLastImage()->rows / 2) - lineHyst
-			&& p->getLastBlob()->getCentroid().y > (ptrData->getLastImage()->rows / 2) + lineHyst)
-		{
-			p->setCounted(false);
-		}
+		
 	}
 
 
@@ -77,6 +72,12 @@ void COUNTER_ONE_HYST::count()
 			textColorLeftB = rand() % 255;
 			textColorLeftG = rand() % 255;
 			textColorLeftR = rand() % 255;
+		}
+		else if (p->isCountedCheck()
+			&& ( p->getLastBlob()->getCentroid().y < (ptrData->getLastImage()->rows / 2) - lineHyst
+				|| p->getLastBlob()->getCentroid().y > (ptrData->getLastImage()->rows / 2) + lineHyst ))
+		{
+			p->setCounted(false);
 		}
 	}
 
