@@ -40,6 +40,12 @@
 #include "AbstractTracking.hpp"
 #include "AbstractCounting.hpp"
 
+//---------------------------
+#include <fstream>
+#include <sstream>
+#include <string>
+//---------------------------
+
 using namespace std;
 
 class Application
@@ -63,6 +69,8 @@ class Application
 		int nImagesSaved;
 		Mat lastImage;
 		int frameNr;
+		Mat *graph1;
+		Mat *graph2;
 
 		Input *input;
 		Display *display;
@@ -77,6 +85,10 @@ class Application
 		bool buttonControl();
 		void record();
 		void pause();
+
+		void initGraph();
+		void drawGraphUp(Point point);
+		void drawGraphDown(Point point);
 
 		void saveSettings();
 

@@ -25,6 +25,7 @@ int main()
 		return -1;
 	}
 
+	cout << "Press enter to continue..." << endl;
 	getchar();
 
 	return 0;
