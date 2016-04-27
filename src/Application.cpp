@@ -142,7 +142,9 @@ Application::~Application()
 void Application::start()
 {
 	Mat frame;
-	initGraph();
+	initGraph("Faktiska värden upp en.txt", "Faktiska värden ner en.txt");
+	//initGraph("Faktiska värden upp två.txt", "Faktiska värden ner två.txt");
+	
 	/*
 	//Emil test (shall be done once?)***********
 	frame = input->getImage();
@@ -171,8 +173,8 @@ void Application::start()
 
 	//COUNTING
 	//addCounting(new COUNTER_ONE(data));
-	//addCounting(new COUNTER_ONE_HYST(data));
-	addCounting(new COUNTER_TWO(data));
+	addCounting(new COUNTER_ONE_HYST(data));
+	//addCounting(new COUNTER_TWO(data));
 	//addCounting(new COUNTER_CC(data));
 
 	display->createWindow("TEST1");
@@ -244,6 +246,9 @@ void Application::start()
 	cout << "=====================" << endl << endl;
 
 	Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + "," + Tools::int2String(data->upCnt) + "," + Tools::int2String(data->downCnt));
+
+	cout << "Press enter to continue..." << endl;
+	getchar();
 }
 
 
@@ -338,7 +343,7 @@ void Application::pause()
 //====================GRAPHS====================================================================
 
 
-void Application::initGraph()
+void Application::initGraph(string upFile, string downFile)
 {
 	string line;
 	ifstream ifile;
@@ -348,7 +353,7 @@ void Application::initGraph()
 	int prevX = 0;
 	int prevY = 0;
 
-	ifile.open("Faktiska värden upp en räknelinje.txt");
+	ifile.open(upFile);
 	if (ifile.is_open())
 	{
 		for (int i = 0; getline(ifile, line); i++)
@@ -363,7 +368,7 @@ void Application::initGraph()
 	prevX = 0;
 	prevY = 0;
 
-	ifile.open("Faktiska värden ner en räknelinje.txt");
+	ifile.open(downFile);
 	if (ifile.is_open())
 	{
 		for (int i = 0; getline(ifile, line); i++)

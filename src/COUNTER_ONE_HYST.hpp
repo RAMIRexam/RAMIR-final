@@ -19,6 +19,7 @@ class COUNTER_ONE_HYST : public AbstractCounting
 		void saveSettings();
 
 	private:
+		int lineHyst;
 
 		int textColorLeftB;
 		int textColorLeftG;
@@ -27,6 +28,8 @@ class COUNTER_ONE_HYST : public AbstractCounting
 		int textColorRightB;
 		int textColorRightG;
 		int textColorRightR;
+
+		static void setHyst(int value, void * userdata);
 
 };
 

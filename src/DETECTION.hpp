@@ -19,10 +19,14 @@ class DETECTION : public AbstractDetection
 		int areaLimit_1P;
 		int areaLimit_2P;
 		int areaLimit_3P;
+		int areaLimit_4P;
+		int areaLimit_5P;
 
 		static void setAreaLimit_1P(int value, void *userData);
 		static void setAreaLimit_2P(int value, void *userData);
 		static void setAreaLimit_3P(int value, void *userData);
+		static void setAreaLimit_4P(int value, void *userData);
+		static void setAreaLimit_5P(int value, void *userData);
 
 };
 

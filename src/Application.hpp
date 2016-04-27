@@ -86,7 +86,7 @@ class Application
 		void record();
 		void pause();
 
-		void initGraph();
+		void initGraph(string upFile, string downFile);
 		void drawGraphUp(Point point);
 		void drawGraphDown(Point point);
 

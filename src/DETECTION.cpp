@@ -9,10 +9,14 @@ DETECTION::DETECTION(Data * data) : AbstractDetection(data)
 	areaLimit_1P = Settings::loadFromFile("DETECTION_AREA_LIMIT_1P");
 	areaLimit_2P = Settings::loadFromFile("DETECTION_AREA_LIMIT_2P");
 	areaLimit_3P = Settings::loadFromFile("DETECTION_AREA_LIMIT_3P");
+	areaLimit_4P = Settings::loadFromFile("DETECTION_AREA_LIMIT_4P");
+	areaLimit_5P = Settings::loadFromFile("DETECTION_AREA_LIMIT_5P");
 
-	createTrackbar("DETECTION_AREA_LIMIT_1P", "Settings", &areaLimit_1P, 40000, setAreaLimit_1P, this);
-	createTrackbar("DETECTION_AREA_LIMIT_2P", "Settings", &areaLimit_2P, 40000, setAreaLimit_2P, this);
-	createTrackbar("DETECTION_AREA_LIMIT_3P", "Settings", &areaLimit_3P, 40000, setAreaLimit_3P, this);
+	createTrackbar("DETECTION_AREA_LIMIT_1P", "Settings", &areaLimit_1P, 80000, setAreaLimit_1P, this);
+	createTrackbar("DETECTION_AREA_LIMIT_2P", "Settings", &areaLimit_2P, 80000, setAreaLimit_2P, this);
+	createTrackbar("DETECTION_AREA_LIMIT_3P", "Settings", &areaLimit_3P, 80000, setAreaLimit_3P, this);
+	createTrackbar("DETECTION_AREA_LIMIT_4P", "Settings", &areaLimit_4P, 80000, setAreaLimit_4P, this);
+	createTrackbar("DETECTION_AREA_LIMIT_5P", "Settings", &areaLimit_5P, 80000, setAreaLimit_5P, this);
 }
 
 
@@ -57,9 +61,28 @@ void DETECTION::detect()
 		Point2f cent = Point(m.m10 / m.m00, m.m01 / m.m00);
 
 
-		if (m.m00 > areaLimit_3P)
+		if (m.m00 > areaLimit_5P)
 		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
+			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(166, 0, 166), 2); //TEST CODE!
+			rectangle(*out, rect, Scalar(166, 0, 166), 2);	//TEST CODE!
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+		}
+		else if (m.m00 > areaLimit_4P)
+		{
+			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 166, 166), 2); //TEST CODE!
+			rectangle(*out, rect, Scalar(0, 166, 166), 2);	//TEST CODE!
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+			blobVector->push_back(new Blob(cent, rect, blobROI));
+		}
+		else if (m.m00 > areaLimit_3P)
+		{
+			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(255, 0, 0), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(255, 0, 0), 2);	//TEST CODE!
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 			blobVector->push_back(new Blob(cent, rect, blobROI));
@@ -67,14 +90,14 @@ void DETECTION::detect()
 		}
 		else if (m.m00 > areaLimit_2P)
 		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(255, 0, 0), 2); //TEST CODE!
+			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 255, 0), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(0, 255, 0), 2);	//TEST CODE!
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 		}
 		else if (m.m00 > areaLimit_1P)
 		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 255, 0), 2); //TEST CODE!
+			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(0, 0, 255), 2);	//TEST CODE!
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 		}
@@ -90,6 +113,8 @@ void DETECTION::saveSettings()
 	Settings::saveToFile("DETECTION_AREA_LIMIT_1P", areaLimit_1P);
 	Settings::saveToFile("DETECTION_AREA_LIMIT_2P", areaLimit_2P);
 	Settings::saveToFile("DETECTION_AREA_LIMIT_3P", areaLimit_3P);
+	Settings::saveToFile("DETECTION_AREA_LIMIT_4P", areaLimit_4P);
+	Settings::saveToFile("DETECTION_AREA_LIMIT_5P", areaLimit_5P);
 }
 
 
@@ -113,6 +138,18 @@ void DETECTION::setAreaLimit_3P(int value, void * userData)
 {
 	DETECTION *temp = (DETECTION *)userData;
 	temp->areaLimit_3P = value;
+}
+
+void DETECTION::setAreaLimit_4P(int value, void * userData)
+{
+	DETECTION *temp = (DETECTION *)userData;
+	temp->areaLimit_4P = value;
+}
+
+void DETECTION::setAreaLimit_5P(int value, void * userData)
+{
+	DETECTION *temp = (DETECTION *)userData;
+	temp->areaLimit_5P = value;
 }
 
 

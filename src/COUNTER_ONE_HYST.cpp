@@ -11,6 +11,10 @@ COUNTER_ONE_HYST::COUNTER_ONE_HYST(Data *data) : AbstractCounting(data)
 	textColorRightB = rand() % 255;
 	textColorRightG = rand() % 255;
 	textColorRightR = rand() % 255;
+
+	lineHyst = Settings::loadFromFile("COUNTER_ONE_HYST_hysteres");
+
+	createTrackbar("COUNTER_ONE_HYST_hysteres", "Settings", &lineHyst, 100, setHyst, this);
 }
 
 
@@ -34,14 +38,8 @@ void COUNTER_ONE_HYST::count()
 
 
 
-	//CHECK IF BLOB HAS MOVED OUT OF HYSTERES AREA
-	int lineHyst = 20;
-	for (Path *p : *paths)
-	{
-		
-	}
-
-
+	
+	//int lineHyst = 20;
 
 	//CHECK IF BLOBS HAVE CROSSED THE COUNTING LINE
 	for (Path *p : *paths)
@@ -73,7 +71,7 @@ void COUNTER_ONE_HYST::count()
 			textColorLeftG = rand() % 255;
 			textColorLeftR = rand() % 255;
 		}
-		else if (p->isCountedCheck()
+		else if (p->isCountedCheck() //CHECK IF BLOB HAS MOVED OUT OF HYSTERES AREA
 			&& ( p->getLastBlob()->getCentroid().y < (ptrData->getLastImage()->rows / 2) - lineHyst
 				|| p->getLastBlob()->getCentroid().y > (ptrData->getLastImage()->rows / 2) + lineHyst ))
 		{
@@ -98,4 +96,14 @@ void COUNTER_ONE_HYST::count()
 
 void COUNTER_ONE_HYST::saveSettings()
 {
+	Settings::saveToFile("COUNTER_ONE_HYST_hysteres", lineHyst);
+}
+
+
+//===============TRACKBAR CALLBACKFUNCTIONS=========================
+
+void COUNTER_ONE_HYST::setHyst(int value, void * userdata)
+{
+	COUNTER_ONE_HYST *temp = (COUNTER_ONE_HYST *)userdata;
+	temp->lineHyst = value;
 }
