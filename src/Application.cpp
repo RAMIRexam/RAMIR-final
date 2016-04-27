@@ -248,7 +248,7 @@ void Application::start()
 	Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + "," + Tools::int2String(data->upCnt) + "," + Tools::int2String(data->downCnt));
 
 	cout << "Press enter to continue..." << endl;
-	getchar();
+	waitKey();
 }
 
 
@@ -358,7 +358,7 @@ void Application::initGraph(string upFile, string downFile)
 	{
 		for (int i = 0; getline(ifile, line); i++)
 		{
-			cv::line(*graph1, Point(prevX, 300 - (prevY * 3)), Point(i*10 , 300 - (Tools::string2Int(line) * 3)), Scalar(255,0,0), 2);
+			cv::line(*graph1, Point(prevX, 300 - (prevY * 3)), Point(i*10 , 300 - (Tools::string2Int(line) * 3)), Scalar(255,0,0), 3);
 			prevX = i * 10;
 			prevY = Tools::string2Int(line);
 		}
@@ -373,7 +373,7 @@ void Application::initGraph(string upFile, string downFile)
 	{
 		for (int i = 0; getline(ifile, line); i++)
 		{
-			cv::line(*graph2, Point(prevX, 300 - (prevY * 3)), Point(i * 10, 300 - (Tools::string2Int(line) * 3)), Scalar(255, 0, 0), 2);
+			cv::line(*graph2, Point(prevX, 300 - (prevY * 3)), Point(i * 10, 300 - (Tools::string2Int(line) * 3)), Scalar(255, 0, 0), 3);
 			prevX = i * 10;
 			prevY = Tools::string2Int(line);
 		}
@@ -384,14 +384,14 @@ void Application::initGraph(string upFile, string downFile)
 int prevUpY = 0;
 void Application::drawGraphUp(Point point)
 {
-	cv::line(*graph1, Point((point.x - 1) * 10, 300 - (prevUpY * 3)), Point(point.x * 10, 300 - (point.y * 3)), Scalar(0, 0, 255), 1);
+	cv::line(*graph1, Point((point.x - 1) * 10, 300 - (prevUpY * 3)), Point(point.x * 10, 300 - (point.y * 3)), Scalar(0, 0, 255), 2);
 	prevUpY = point.y;
 }
 
 int prevDownY = 0;
 void Application::drawGraphDown(Point point)
 {
-	cv::line(*graph2, Point((point.x - 1) * 10, 300 - (prevDownY * 3)), Point(point.x * 10, 300 - (point.y * 3)), Scalar(0, 0, 255), 1);
+	cv::line(*graph2, Point((point.x - 1) * 10, 300 - (prevDownY * 3)), Point(point.x * 10, 300 - (point.y * 3)), Scalar(0, 0, 255), 2);
 	prevDownY = point.y;
 }
 
