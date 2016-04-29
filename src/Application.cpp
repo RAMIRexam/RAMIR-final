@@ -21,8 +21,6 @@ Application::Application()
 		throw strException;
 	}
 
-	frameNr = 1;
-
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
 	time_t now = time(0);
@@ -54,8 +52,6 @@ Application::Application(int a)
 	} catch (char *strException) {
 		throw strException;
 	}
-
-	frameNr = 1;
 
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
@@ -89,8 +85,6 @@ Application::Application(char *str)
 	} catch (char *strException) {
 		throw strException;
 	}
-
-	frameNr = 1;
 
 	//USED TO CREATE UNIQUE NAME FOR SAVED IMAGES
 	nImagesSaved = 0;
@@ -141,10 +135,14 @@ Application::~Application()
 */
 void Application::start()
 {
+	int frameNr = 1;
 	Mat frame;
 	initGraph("Faktiska värden upp en.txt", "Faktiska värden ner en.txt");
 	//initGraph("Faktiska värden upp två.txt", "Faktiska värden ner två.txt");
 	
+	
+	Statistic stat(dateTime);
+
 	/*
 	//Emil test (shall be done once?)***********
 	frame = input->getImage();
@@ -219,19 +217,16 @@ void Application::start()
 		lastImage = *data->getLastImage();
 
 		data->clearImages();
-		frameNr++;
 
+
+		stat.saveStat(data->upCnt, data->downCnt);
+
+		
+		frameNr++;
 		if (frameNr % 250 == 0)
 		{
-			cout << "=====" << frameNr << "=====" << endl;
-			cout << "Up counter: " << data->upCnt << endl;
-			cout << "Down counter: " << data->downCnt << endl;
-			cout << "=====================" << endl << endl;
-
 			drawGraphUp(Point(frameNr / 250, data->upCnt));
 			drawGraphDown(Point(frameNr / 250, data->downCnt));
-
-			Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + "," + Tools::int2String(data->upCnt) + "," + Tools::int2String(data->downCnt));
 		}
 	}
 
@@ -240,12 +235,8 @@ void Application::start()
 	saveSettings();
 
 
-	cout << "=====" << frameNr << "=====" << endl;
-	cout << "Up counter: " << data->upCnt << endl;
-	cout << "Down counter: " << data->downCnt << endl;
-	cout << "=====================" << endl << endl;
 
-	Statistic::saveStat(dateTime, "" + Tools::int2String(frameNr) + "," + Tools::int2String(data->upCnt) + "," + Tools::int2String(data->downCnt));
+	stat.saveStat(data->upCnt, data->downCnt);
 
 	cout << "Press enter to continue..." << endl;
 	waitKey();

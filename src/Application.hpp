@@ -68,7 +68,6 @@ class Application
 		string dateTime;
 		int nImagesSaved;
 		Mat lastImage;
-		int frameNr;
 		Mat *graph1;
 		Mat *graph2;
 
