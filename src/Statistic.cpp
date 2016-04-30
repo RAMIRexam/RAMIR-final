@@ -9,7 +9,7 @@ Statistic::Statistic(string filename)
 {
 	nFrame = 1;
 	ofile = new ofstream();
-	ofile->open(filename + ".csv", ios::app);
+	ofile->open(filename + ".csv");
 }
 
 Statistic::~Statistic()

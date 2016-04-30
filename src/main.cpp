@@ -1,5 +1,5 @@
 /*
-Copyright RAMIR (Räkning av människor i rörelse)
+Copyright RAMIR (Räkning av människor i rörelse med bildtolkning)
 Del2 i Examensarbete - implementering av projektalgoritmen (egna bildanalysalgoritmer)".
 
 År 2016

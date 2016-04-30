@@ -63,7 +63,7 @@ void DETECTION::detect()
 
 		if (m.m00 > areaLimit_5P)
 		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(166, 0, 166), 2); //TEST CODE!
+			ellipse(*out, cent, Size(5, 5), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(166, 0, 166), 2);	//TEST CODE!
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 			blobVector->push_back(new Blob(cent, rect, blobROI));
@@ -73,7 +73,7 @@ void DETECTION::detect()
 		}
 		else if (m.m00 > areaLimit_4P)
 		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 166, 166), 2); //TEST CODE!
+			ellipse(*out, cent, Size(5, 5), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(0, 166, 166), 2);	//TEST CODE!
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 			blobVector->push_back(new Blob(cent, rect, blobROI));
@@ -82,7 +82,7 @@ void DETECTION::detect()
 		}
 		else if (m.m00 > areaLimit_3P)
 		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(255, 0, 0), 2); //TEST CODE!
+			ellipse(*out, cent, Size(5, 5), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(255, 0, 0), 2);	//TEST CODE!
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 			blobVector->push_back(new Blob(cent, rect, blobROI));
@@ -90,14 +90,14 @@ void DETECTION::detect()
 		}
 		else if (m.m00 > areaLimit_2P)
 		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 255, 0), 2); //TEST CODE!
+			ellipse(*out, cent, Size(5, 5), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(0, 255, 0), 2);	//TEST CODE!
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 		}
 		else if (m.m00 > areaLimit_1P)
 		{
-			ellipse(*out, cent, Size(10, 10), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
+			ellipse(*out, cent, Size(5, 5), 0.0, 0.0, 360.0, Scalar(0, 0, 255), 2); //TEST CODE!
 			rectangle(*out, rect, Scalar(0, 0, 255), 2);	//TEST CODE!
 			blobVector->push_back(new Blob(cent, rect, blobROI));
 		}
