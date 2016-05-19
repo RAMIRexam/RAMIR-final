@@ -143,19 +143,15 @@ void Application::start()
 	
 	Statistic stat(dateTime);
 
-	/*
-	//Emil test (shall be done once?)***********
-	frame = input->getImage();
 
-	display->resizeImage(&frame);
+	Size frameSize(544.0, 288.0);
 
-	data->addImage(&frame);
-	//*******************************************
-	*/
+	VideoWriter oVideoWriter("MyVideo.avi", CV_FOURCC('M', 'J', 'P', 'G'), 20, frameSize, true);
 	
 	//SEGMENT
 	//addSegment(new BGS(data));
 	//addSegment(new ROI_BG(data));
+	//addSegment(new MOG_BGS(data));
 	addSegment(new MOG_BGS_HSV(data));
 
 	//FILTER
@@ -175,10 +171,10 @@ void Application::start()
 	//addCounting(new COUNTER_TWO(data));
 	//addCounting(new COUNTER_CC(data));
 
-	display->createWindow("TEST1");
-	display->createWindow("TEST2");
-	display->createWindow("UPP");
-	display->createWindow("NER");
+	display->createWindow("Behandlad bild");
+	//display->createWindow("TEST2");
+	//display->createWindow("UPP");
+	//display->createWindow("NER");
 
 
 	while (!buttonControl())
@@ -190,7 +186,7 @@ void Application::start()
 
 		data->addImage(&frame);
 
-		display->showImage(data->getImage(), 0);
+		//display->showImage(data->getImage(), 0);
 
 		for (AbstractSegment *s : *segmentObjectVector) {
 			s->segment();
@@ -211,13 +207,14 @@ void Application::start()
 		for (AbstractCounting *c : *countingObjectVector) {
 			c->count();
 		}
-		display->showImage(data->getLastImage(), 1);
-		display->showImage(graph1, 2);
-		display->showImage(graph2, 3);
+		//oVideoWriter.write(*data->getLastImage()); //writer the frame into the file
+
+		display->showImage(data->getLastImage(), 0);
+		//display->showImage(graph1, 2);
+		//display->showImage(graph2, 3);
 		lastImage = *data->getLastImage();
 
 		data->clearImages();
-
 
 		stat.saveStat(data->upCnt, data->downCnt);
 
